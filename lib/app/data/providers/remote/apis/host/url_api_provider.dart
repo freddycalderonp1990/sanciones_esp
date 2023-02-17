@@ -2,7 +2,7 @@ part of '../../../providers_impl.dart';
 
 class UrlApiProvider {
   static int _secondsTimeout =
-      AppConfig.AmbienteUrl == Ambiente.produccion ? 8 : 10;
+      AppConfig.AmbienteUrl == Ambiente.produccion ? 8 : 30;
 
   static Future<Map<String, String>> getheaders() async {
     LocalStorageRepository _localStorageRepository =
@@ -52,13 +52,10 @@ class UrlApiProvider {
         if (!isLogin) {
           log(response.body);
         }
-        return response.body.toString();
+        return UtilidadesUtil.convertUTF8(response.body.codeUnits);
       } else if (response.statusCode == 401 && isLogin) {
         throw ServerException(cause: "El Usuario o clave es incorrecta");
       } else if (response.statusCode == 423 && isLogin) {
-        String json = response.body.toString();
-        CabeceraJsonModel data = CabeceraJsonModel.fromJson(json);
-        throw ServerException(cause: data.message);
         throw ServerException(cause: "No se encuentra activo");
       } else {
         throw ServerException.StatusCode(statusCode: response.statusCode);
@@ -94,14 +91,8 @@ class UrlApiProvider {
       if (response.statusCode == 200) {
         print("bodyTrasnformeee ${response.body.toString()}");
 
-        String bodyJson = response.body.toString();
 
-
-        //Acepta los acentos y Ñ
-        //Convierte a UTF-8
-        String stringResponse = const Utf8Decoder().convert(response.body.codeUnits);
-
-        return stringResponse;
+              return UtilidadesUtil.convertUTF8(response.body.codeUnits);
       } else {
         throw ServerException.StatusCode(statusCode: response.statusCode);
       }
@@ -133,7 +124,7 @@ class UrlApiProvider {
       print("response.statusCode: ${response.statusCode}");
 
       if (response.statusCode == 200) {
-        return response.body.toString();
+        return UtilidadesUtil.convertUTF8(response.body.codeUnits);
       } else {
         throw ServerException.StatusCode(statusCode: response.statusCode);
       }
@@ -165,7 +156,7 @@ class UrlApiProvider {
       print("post-responsebody: ${response.body}");
 
       if (response.statusCode == 200) {
-        return response.body.toString();
+        return UtilidadesUtil.convertUTF8(response.body.codeUnits);
       } else {
         throw ServerException.StatusCode(statusCode: response.statusCode);
       }
@@ -197,7 +188,7 @@ class UrlApiProvider {
       print("post-responsebody: ${response.body}");
 
       if (response.statusCode == 200) {
-        return response.body.toString();
+        return UtilidadesUtil.convertUTF8(response.body.codeUnits);
       } else {
         throw ServerException.StatusCode(statusCode: response.statusCode);
       }

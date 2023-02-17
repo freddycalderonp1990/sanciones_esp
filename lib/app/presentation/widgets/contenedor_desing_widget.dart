@@ -23,7 +23,7 @@ class ContenedorDesingWidget extends StatelessWidget {
         width: responsive.anchoP(anchoPorce),
         margin: margin,
         decoration: BoxDecoration(
-          color: Colors.white.withOpacity(0.4),
+          color: AppColors.colorContenedores,
           borderRadius: BorderRadius.circular(AppConfig.radioBordecajas),
           border: Border.all(color: AppColors.colorBordecajas, width: 0.5),
         ),

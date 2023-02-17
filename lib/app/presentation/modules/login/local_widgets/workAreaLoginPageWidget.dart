@@ -119,7 +119,7 @@ class _WorkAreaLoginPageWidgetState extends State<WorkAreaLoginPageWidget> {
 
             widget.mostrarVersion
                 ? Text(
-              'Versión 2: Build-' + version + ' ' + Host.getAmbiente(),
+              'Versión 1: Build-' + version + ' ' + Host.getAmbiente(),
               style: TextStyle(
                   fontWeight: FontWeight.bold,
                   color: Colors.white.withOpacity(0.5)),

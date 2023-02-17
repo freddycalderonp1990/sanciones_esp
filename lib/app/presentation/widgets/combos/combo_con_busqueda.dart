@@ -276,7 +276,7 @@ class _ComboConBusquedaState extends State<ComboConBusqueda> {
                     ]),
                 child: Container(
                     decoration: BoxDecoration(
-                      color: Colors.white,
+                      color: AppColors.colorContenedores,
                       borderRadius: BorderRadius.circular(5),
                     ),
                     padding: EdgeInsets.all(10),

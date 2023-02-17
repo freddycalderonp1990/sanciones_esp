@@ -16,36 +16,98 @@ class SancionesPage extends GetView<SancionesController> {
 
   getMenu() {
     final responsive = ResponsiveUtil();
-    Widget wg = SingleChildScrollView(child: Column(
+    Widget wg = SingleChildScrollView(
+      child: Column(
+        children: [
+          BtnIconWidget(
+              titulo: "Qr",
+              onPressed: () {
+                DialogosDesingWidget.getDialogoX(
+                    title: "Qr",
+                    contenido: Container(
+                      height: 400,
+                      width: 400,
+                      child: QRView(
+                        key: controller.qrKey,
+                        onQRViewCreated: controller.onQRViewCreated,
+                        overlay: QrScannerOverlayShape(
+                            borderColor: Colors.red,
+                            borderRadius: 10,
+                            borderLength: 30,
+                            borderWidth: 10,
+                            cutOutSize: responsive.diagonalP(25)),
+                        onPermissionSet: (ctrl, p) =>
+                            controller.onPermissionSet(Get.context!, ctrl, p),
+                      ),
+                    ));
+              }),
+          Obx(
+            () => Text(controller.cedulaQr.value),
+          ),
+          Text('SANCIÓN DISCIPLINARIA LEVE',
+              textAlign: TextAlign.center,
+              style: TextStyle(
+                color: Colors.black,
+                fontWeight: FontWeight.bold,
+                fontSize: responsive.diagonalP(AppConfig.tamTexto + 0.5),
+              )),
+          Container(
+            height: responsive.diagonalP(8),
+            child: Image.asset(AppImages.img_bandera_escudo_esp),
+          ),
+          getTipoDeConsulta(),
+          Obx(() => getWgImputTipoBusqueda()),
+          SizedBox(
+            height: 5,
+          ),
+          Obx(() => controller.showDatos.value
+              ? getWgDatosHideShowSanciones()
+              : Container())
+        ],
+      ),
+    );
+
+    return wg;
+  }
+
+  getWgDatosHideShowSanciones() {
+    final responsive = ResponsiveUtil();
+    return Column(
       children: [
-        Text('SANCIÓN DISCIPLINARIA LEVE',
-            textAlign: TextAlign.center,
-            style: TextStyle(
-              color: Colors.white,
-              fontWeight: FontWeight.bold,
-              fontSize: responsive.diagonalP(AppConfig.tamTexto + 0.5),
-            )),
-        getTipoDeConsulta(),
-        Obx(() => getWgImputTipoBusqueda()),
-        SizedBox(
-          height: 5,
-        ),
         getWdDatos(),
         SizedBox(
           height: 5,
         ),
         getWdSanciones(),
+        ContenedorDesingWidget(
+          margin: const EdgeInsets.all(8.0),
+          child: TextField(
+            style: TextStyle(color: Colors.white),
+            decoration: InputDecoration(
+                border: InputBorder.none,
+                hintStyle: TextStyle(color: Colors.black),
+                labelStyle: TextStyle(
+                    fontSize: responsive.diagonalP(AppConfig.tamTexto + 0.5),
+                    color: AppColors.colorTextos),
+                labelText: "Observación",
+                hintText: "Escriba....",
+                alignLabelWithHint: false,
+                filled: true),
+            keyboardType: TextInputType.multiline,
+            maxLines: 2,
+            textInputAction: TextInputAction.done,
+          ),
+        ),
         Container(
           height: responsive.altoP(8),
         ),
         BotonesWidget(iconData: Icons.save, title: "GUARDAR", onPressed: () {}),
       ],
-    ),);
-
-    return wg;
+    );
   }
 
   getTipoDeConsulta() {
+    return Container();
     final responsive = ResponsiveUtil();
     return Obx(() => Container(
           padding: EdgeInsets.symmetric(horizontal: 10),
@@ -65,7 +127,7 @@ class SancionesPage extends GetView<SancionesController> {
               SizedBox(
                 width: responsive.diagonalP(0.5),
               ),
-              Expanded(
+              /* Expanded(
                   child: BtnIconWidget(
                 select: controller.selectNombres.value,
                 stringImg: AppImages.iconUsuario,
@@ -74,7 +136,7 @@ class SancionesPage extends GetView<SancionesController> {
                   controller.selectCedula.value = false;
                   controller.selectNombres.value = true;
                 },
-              )),
+              )),*/
             ],
           ),
         ));
@@ -126,15 +188,40 @@ class SancionesPage extends GetView<SancionesController> {
     double radius = AppConfig.radioBordecajas;
     final responsive = ResponsiveUtil();
 
-    Widget wg = Container();
+    Widget wgFoto = Container();
+
+    String fotoBase64 = controller.dataCedete.value.image;
+
+    Uint8List? imgMemory = PhotoHelper.convertStringToUint8List(fotoBase64);
+    if (imgMemory != null) {
+      Widget onlyWdFoto = ClipRRect(
+          borderRadius: BorderRadius.circular(AppConfig.radioBordecajas),
+          child: Image.memory(
+            imgMemory,
+            fit: BoxFit.fill,
+          ));
+
+      wgFoto = MaterialButton(
+          onPressed: () {
+            DialogosDesingWidget.getDialogoX(
+                contenido: onlyWdFoto,
+                title: controller.dataCedete.value.person.namesComplete);
+          },
+          child: Container(
+            height: responsive.altoP(15),
+            width: responsive.altoP(15),
+            child: onlyWdFoto,
+          ));
+    }
 
     double separacionText = 5;
     Color colorTexto = Colors.black;
-    wg = ContenedorDesingWidget(
+    Widget wg = ContenedorDesingWidget(
         paddin: EdgeInsets.all(5),
         anchoPorce: 95,
         child: Obx(() => Column(
               children: [
+                wgFoto,
                 IconTitleDetalleWidget(
                     colorTexto: colorTexto,
                     nameStringImg: AppImages.iconUsuario,
@@ -146,11 +233,7 @@ class SancionesPage extends GetView<SancionesController> {
                 IconTitleDetalleWidget(
                     colorTexto: colorTexto,
                     nameStringImg: AppImages.iconUsuario,
-                    detalle: controller.dataCedete.value.person.names +
-                        " " +
-                        controller.dataCedete.value.person.lastName +
-                        " " +
-                        controller.dataCedete.value.person.secondName,
+                    detalle: controller.dataCedete.value.person.namesComplete,
                     title: "NOMBRES:"),
                 SizedBox(
                   height: separacionText,
@@ -158,7 +241,7 @@ class SancionesPage extends GetView<SancionesController> {
                 IconTitleDetalleWidget(
                     colorTexto: colorTexto,
                     nameStringImg: AppImages.iconUsuario,
-                    detalle: "F",
+                    detalle: controller.dataCedete.value.section,
                     title: "SECCIÓN:"),
               ],
             )));

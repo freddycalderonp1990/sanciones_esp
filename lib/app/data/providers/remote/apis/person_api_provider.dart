@@ -6,10 +6,10 @@ class PersonApiProviderImpl extends PersonRepository {
 
 
   @override
-  Future<List<DataCadete>> getDataCadete(String cedula) async {
+  Future<DataCadete> getDataCadete(String cedula) async {
 
     String json = await UrlApiProvider.get(
-        segmento: 'cadets?person__dni=${cedula}');
+        segmento: 'cadets/search-dni/${cedula}');
 
 
     return cadeteModelFromJson(json).dataCadete;

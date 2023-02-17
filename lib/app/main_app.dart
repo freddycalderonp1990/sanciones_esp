@@ -19,11 +19,22 @@ class MainApp extends StatelessWidget {
     return GetMaterialApp(
 
       theme: ThemeData(
+
+
+        textTheme: const TextTheme(
+          displayLarge: TextStyle(fontSize: 72.0, fontWeight: FontWeight.bold,color: Colors.red),
+          titleLarge: TextStyle(fontSize: 36.0, fontStyle: FontStyle.italic,color: Colors.deepOrangeAccent),
+          bodyMedium: TextStyle(fontSize: 14.0, color: Colors.yellow),
+
+
+        ),
         // Define el Brightness y Colores por defecto
         backgroundColor: AppColors.colorBackground,
 
         // Define la Familia de fuente por defecto
         fontFamily: 'Bookman Old Style',
+
+
 
         // Define el TextTheme por defecto. Usa esto para espicificar el estilo de texto por defecto
         // para cabeceras, títulos, cuerpos de texto, y más.

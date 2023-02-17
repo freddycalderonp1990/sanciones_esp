@@ -1,4 +1,5 @@
 
+import 'dart:convert';
 import 'dart:io';
 
 import 'package:intl/intl.dart';
@@ -23,6 +24,17 @@ class UtilidadesUtil {
 
   static getVersionCode(){
 
+  }
+
+
+  static  convertUTF8(List<int> codeUnits){
+
+    //Acepta los acentos y Ñ
+    //Convierte a UTF-8
+    String stringResponse = const Utf8Decoder().convert(codeUnits);
+
+
+    return stringResponse;
   }
 
   static  double cacularPorcentaje({required double valor ,required double totalMonto}){

@@ -62,7 +62,7 @@ dependencies:
   cached_network_image: ^3.2.3 #Muestra imagenes desde internet y las guarda en cache
   share_plus: ^6.0.1 #para comparir x wts
   permission_handler: ^10.0.0 # Solicita Permisos del dispositivo al usuario (Ubicacion,Galeria.....)
-
+  qr_code_scanner: ^1.0.1 #Lector Qr
   package_info_plus: ^3.0.2
   image: ^4.0.13
 

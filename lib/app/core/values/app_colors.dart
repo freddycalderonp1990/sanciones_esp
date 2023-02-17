@@ -5,6 +5,8 @@ class AppColors {
 
   static final dark = Color(0xFF03091E);
 
+  static const Color colorTextos =Colors.white;
+
 
   static const Color colorBotones = AppColors.colorAzulSecond_20;
   static const Color colorCajas = Color(0XFFeceff4);
@@ -12,6 +14,7 @@ class AppColors {
 
 
   static const Color colorBackground = AppColors.colorAzul;
+
 
   static const Color colorBordeBotones = Colors.red;
   static const Color colorBordecajas =Colors.white;
@@ -44,6 +47,8 @@ class AppColors {
   static const Color colorPlomo_80 = Color.fromRGBO(rPlomo, gPlomo, bPlomo, 80);
   static const Color colorPlomo_60 = Color.fromRGBO(rPlomo, gPlomo, bPlomo, 60);
   static const Color colorPlomo_20 = Color.fromRGBO(rPlomo, gPlomo, bPlomo, 20);
+
+  static const Color colorContenedores = Color.fromRGBO(167, 169, 172, 40);
 
   //AMARILLO
   static const int rAmarillo = 255, gAmarillo = 211, bAmarillo = 0;

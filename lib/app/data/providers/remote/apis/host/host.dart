@@ -12,7 +12,7 @@ class Host {
     switch (AppConfig.AmbienteUrl) {
       case Ambiente.desarrollo:
 
-        url="http://192.168.3.64:8000/";
+        url="http://192.168.3.42:8000/";
 
         url=_setSegmentoApp(url,onlyUrl);
         break;
@@ -21,6 +21,7 @@ class Host {
         url=_setSegmentoApp(url,onlyUrl);
         break;
       case Ambiente.produccion:
+
 
 
 

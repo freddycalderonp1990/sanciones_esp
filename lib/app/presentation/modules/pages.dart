@@ -5,11 +5,14 @@ import 'package:flutter/cupertino.dart';
 
 import 'package:flutter/services.dart';
 import 'package:flutter_pdfview/flutter_pdfview.dart';
+import 'package:qr_code_scanner/qr_code_scanner.dart';
+import '../../core/utils/photo_helper.dart';
 import '../../core/utils/utilidadesUtil.dart';
 import '../widgets/custom_app_widgets.dart';
 import 'package:get/get.dart';
 import '../../../app/presentation/routes/app_routes.dart';
 
+import '../widgets/qr_sanner_widget.dart';
 import 'controllers.dart';
 
 import '../../core/utils/responsiveUtil.dart';
@@ -28,6 +31,7 @@ part 'splash/splash_page.dart';
 part 'login/login_page.dart';
 part 'login/inicio_rapido/inicio_rapido_page.dart';
 part 'sanciones/sanciones_page.dart';
+part 'qr_scanner/qr_scanner_page.dart';
 
 
 

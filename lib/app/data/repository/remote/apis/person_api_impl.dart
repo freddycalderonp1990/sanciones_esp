@@ -10,7 +10,7 @@ class PersonApiImpl extends PersonRepository {
 
 
   @override
-  Future<List<DataCadete>> getDataCadete(String cedula) async {
+  Future<DataCadete> getDataCadete(String cedula) async {
     try {
 
 

@@ -26,7 +26,7 @@ class LoginPage extends GetView<LoginController> {
           mostrarVersion: true,
           imgFondo: AppImages.imgFondoLogin,
           peticionServer: controller.peticionServerState,
-          title: 'ESCUELA SUPERIOR DE POLICÍA \n"Gral. Alberto Enrríquez Gallo"',
+          title: 'ESCUELA SUPERIOR DE POLICÍA \n«Gral. Alberto Enrríquez Gallo»',
           sizeTittle: 6,
           contenido: <Widget>[
             SizedBox(

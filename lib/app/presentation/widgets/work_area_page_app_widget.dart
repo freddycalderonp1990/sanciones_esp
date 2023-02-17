@@ -4,6 +4,7 @@ class WorkAreaPageAppWidget extends StatefulWidget {
   final RxBool peticionServer;
   final String title;
   final String name;
+
   final Widget contenido;
   final bool btnAtras;
   final VoidCallback? pantallaIrAtras;
@@ -65,23 +66,27 @@ class _WorkAreaPageAppWidgetState extends State<WorkAreaPageAppWidget> {
       ),
     );
 
-    wgImgFondo = Container(
+    /*  wgImgFondo = Container(
       height: responsive.alto,
       width: responsive.ancho,
       color: AppColors.colorBackground,
-    );
+    );*/
 
     Widget desingCabecera = Center(
       child: Column(
         children: <Widget>[
           Row(
             children: [
-              SizedBox(width: 2,),
-            widget. btnAtras?   desingBtncabecera(
-                  onPressed: () => Get.back(), icon: Icons.arrow_back):Container(),
+              SizedBox(
+                width: 2,
+              ),
+              widget.btnAtras
+                  ? desingBtncabecera(
+                      onPressed: () => Get.back(), icon: Icons.arrow_back)
+                  : Container(),
               Expanded(
                 child: Text(
-                  'ESCUELA SUPERIOR DE POLICÍA \n"GRAL. ALBERTO ENRRÍQUEZ GALLO"',
+                  'ESCUELA SUPERIOR DE POLICÍA \n«GRAL. ALBERTO ENRRÍQUEZ GALLO»',
                   textAlign: TextAlign.center,
                   style: TextStyle(
                       color: Colors.white,
@@ -96,20 +101,21 @@ class _WorkAreaPageAppWidgetState extends State<WorkAreaPageAppWidget> {
                     Get.offAllNamed(AppRoutes.SPLASH);
                   },
                   icon: Icons.power_settings_new),
-
-              SizedBox(width: 2,),
+              SizedBox(
+                width: 2,
+              ),
             ],
           ),
           Container(
             height: 1,
-            color: Colors.white,
+            color: Colors.transparent,
           ),
           Container(
             height: 1,
-            color: Colors.white,
+            color: Colors.transparent,
             margin: EdgeInsets.only(top: 4),
           ),
-          getDesingName("KDT. CALDERÓN PAZMIÑO FREDDY NICANOR"),
+          widget.name != '' ? getDesingName(widget.name) : Container(),
           widget.title != ''
               ? Column(
                   children: [
@@ -117,14 +123,14 @@ class _WorkAreaPageAppWidgetState extends State<WorkAreaPageAppWidget> {
                       height: 30,
                     ),
                     Text(
-                      widget.title,
+                      '“El policía de corazón hace únicamente lo que dice la norma.”',
                       textAlign: TextAlign.center,
                       style: TextStyle(
-                          color: Colors.white.withOpacity(0.9),
+                          color: Colors.black,
+                          fontStyle: FontStyle.italic,
                           fontWeight: FontWeight.bold,
-                          fontSize: widget.sizeTittle == 0
-                              ? responsive.diagonalP(AppConfig.tamTextoTitulo)
-                              : responsive.diagonalP(widget.sizeTittle)),
+                          fontSize:
+                              responsive.diagonalP(AppConfig.tamTextoTitulo)),
                     )
                   ],
                 )
@@ -166,7 +172,6 @@ class _WorkAreaPageAppWidgetState extends State<WorkAreaPageAppWidget> {
             child: Stack(
               children: [
                 wgImgFondo,
-
                 SafeArea(
                   child: Column(
                     children: [
@@ -206,28 +211,23 @@ class _WorkAreaPageAppWidgetState extends State<WorkAreaPageAppWidget> {
           height: 5,
         ),
         imgPerfilRedonda(
-          size: 15,
-          img: "aa",
+          size: 20,
+          img: widget.imgPerfil,
+        ),
+        SizedBox(
+          height: 5,
         ),
         Text(
           name,
           textAlign: TextAlign.center,
           style: TextStyle(
-              color: Colors.white.withOpacity(0.9),
+              color: AppColors.colorAzulSecond_20,
               fontWeight: FontWeight.bold,
-              fontSize: responsive.diagonalP(AppConfig.tamTexto)),
-        ),
-        SizedBox(
-          height: 5,
+              fontSize: responsive.diagonalP(AppConfig.tamTextoTitulo)),
         ),
         Container(
-          height: 1,
-          color: Colors.white,
-        ),
-        Container(
-          height: 1,
-          color: Colors.white,
-          margin: EdgeInsets.only(top: 4),
+          height: responsive.diagonalP(15),
+          child: Image.asset(AppImages.img_bandera_escudo_esp),
         ),
       ],
     );
@@ -294,7 +294,7 @@ class _imgPerfilRedondaState extends State<imgPerfilRedonda> {
                 width: 2.5,
               ),
               color: Colors.transparent,
-              borderRadius: BorderRadius.circular(150.0),
+              borderRadius: BorderRadius.circular(100.0),
             ),
             child: imgMemory != null
                 ? Container(
@@ -306,7 +306,7 @@ class _imgPerfilRedondaState extends State<imgPerfilRedonda> {
                     ),
                   )
                 : ClipRRect(
-                    borderRadius: const BorderRadius.all(Radius.circular(60.0)),
+                    borderRadius: const BorderRadius.all(Radius.circular(40.0)),
                     child: Image.asset(
                       AppImages.iconHuella,
                     ),

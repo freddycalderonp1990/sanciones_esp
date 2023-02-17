@@ -14,6 +14,7 @@ import 'dart:io';
 import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
+import 'package:qr_code_scanner/qr_code_scanner.dart';
 
 
 import '../../../app/core/utils/algoritmo_TOTP.dart';
@@ -28,6 +29,7 @@ import 'package:path_provider/path_provider.dart';
 import '../../core/utils/encriptar_util.dart';
 import '../../core/utils/fotografia_util.dart';
 import '../../core/utils/my_date.dart';
+import '../../core/utils/parse_model.dart';
 import '../../core/utils/save_file_mobile.dart';
 import '../../core/values/app_colors.dart';
 import '../../core/values/app_images.dart';
@@ -82,3 +84,4 @@ part 'splash/splash_controller.dart';
 part 'login/login_controller.dart';
 part 'login/inicio_rapido/inicio_rapido_controller.dart';
 part 'sanciones/sanciones_controller.dart';
+part 'qr_scanner/qr_scanner_controller.dart';

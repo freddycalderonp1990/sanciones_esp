@@ -31,6 +31,7 @@ import '../../core/app_config.dart';
 import '../../core/utils/parse_model.dart';
 import '../../core/utils/photo_helper.dart';
 
+import '../../core/utils/utilidadesUtil.dart';
 import '../../data/models/models.dart';
 import '../../domain/repositories/domain_repositories.dart';
 import '../../domain/request/my_request.dart';

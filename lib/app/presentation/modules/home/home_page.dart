@@ -6,6 +6,8 @@ class HomePage extends GetView<HomeController> {
   @override
   Widget build(BuildContext context) {
     return WorkAreaPageAppWidget(
+        name: controller.loginController.user.value.userData.name,
+        imgPerfil: AppImages.imgBase64,
         btnAtras: false,
         pantallaIrAtras: () {
           print(
@@ -13,41 +15,29 @@ class HomePage extends GetView<HomeController> {
           );
           Get.offAllNamed(AppRoutes.HOME);
         },
-
         title: "MENÚ",
         peticionServer: controller.peticionServerState,
-
         contenido: Column(
           mainAxisAlignment: MainAxisAlignment.center,
-          children: [
-
-            Expanded(child: getMenu())
-          ],
+          children: [Expanded(child: getMenu())],
         ));
   }
 
   getMenu() {
     final responsive = ResponsiveUtil();
-    Widget wg = Column(children: [
-
-      Container(height:responsive.altoP(8) ,),
-      BotonesWidget(
-        iconData: Icons.add_box_rounded,
-          title: "SANCIONES",onPressed: (){
-
-        Get.toNamed(AppRoutes.SANCIONES);
-      }),
-
-      BotonesWidget(
-        padding: EdgeInsets.only(top: 10),
-          iconData: Icons.close,
-          title: "SALIR",onPressed: (){
-
-        Get.offAllNamed(AppRoutes.SPLASH);
-      }),
-
-
-    ],);
+    Widget wg = Column(
+      children: [
+        Container(
+          height: responsive.altoP(8),
+        ),
+        BotonesWidget(
+            iconData: Icons.add_box_rounded,
+            title: "SANCIONES",
+            onPressed: () {
+              Get.toNamed(AppRoutes.SANCIONES);
+            }),
+      ],
+    );
 
     return wg;
   }

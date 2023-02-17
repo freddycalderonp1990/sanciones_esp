@@ -31,7 +31,7 @@ class AppConfig {
   static const double sobraBordecajas = 7.0;
 
   static const double tamTextoTituloGrande = 6; //tamaño del texto en porcentaje
-  static const double tamTextoTitulo = 3.5; //tamaño del texto en porcentaje
+  static const double tamTextoTitulo = 2; //tamaño del texto en porcentaje
   static const double tamTexto = 1.5; //tamaño del texto en porcentaje
 
   static const double anchoContenedor = 90.0;

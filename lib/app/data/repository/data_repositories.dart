@@ -11,6 +11,7 @@ import '../../data/models/models.dart';
 import '../../data/providers/providers_impl.dart';
 import '../../domain/repositories/domain_repositories.dart';
 import '../../domain/request/my_request.dart';
+import '../providers/remote/apis/mods/mods_impl.dart';
 
 
 part 'remote/apis/auth_api_impl.dart';

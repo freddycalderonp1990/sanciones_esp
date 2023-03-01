@@ -1,20 +1,17 @@
 part of 'custom_app_widgets.dart';
 
 class BtnIconWidget extends StatelessWidget {
-  final String titulo;
-  final String stringImg;
-  final bool select;
+  final IconData? icon;
+  final Color colorIcon;
+  final Color colorBtn;
   final VoidCallback? onPressed;
-  final bool showLinea;
 
   const BtnIconWidget(
-      {Key? key,
-      this.titulo = '',
-      this.stringImg = '',
-      this.select = false,
-        this.showLinea=true,
-      required this.onPressed})
-      : super(key: key);
+      {super.key,
+       this.icon,
+      this.colorIcon = AppColors.colorAzul,
+      this.colorBtn = Colors.white38,
+      this.onPressed});
 
   @override
   Widget build(BuildContext context) {
@@ -22,58 +19,23 @@ class BtnIconWidget extends StatelessWidget {
     final responsive = ResponsiveUtil();
     Widget wg = Container();
 
-    wg = Container(
-      decoration: BoxDecoration(
-        color: Colors.transparent,
-        borderRadius: BorderRadius.circular(radius),
-      ),
-      child: TextButton.icon(
-        label: Text(titulo,
-            style: TextStyle(
-                color: Colors.white, fontSize: responsive.diagonalP(2))),
-        icon: Container(
-          height: responsive.diagonalP(3),
-          child:stringImg.length==0?Container(): Image.asset(stringImg),
-        ),
-        style: TextButton.styleFrom(
-          shape: RoundedRectangleBorder(
-              borderRadius: BorderRadius.circular(radius),
-              side: BorderSide(color:showLinea? Colors.white.withOpacity(0.5):Colors.transparent)),
-        ),
-        onPressed: onPressed,
+    wg = CupertinoButton(
+      minSize:
+          responsive.isVertical() ? responsive.altoP(5) : responsive.anchoP(5),
+      padding: EdgeInsets.all(3),
+      borderRadius: BorderRadius.circular(30),
+      color: colorBtn,
+      onPressed: onPressed,
+      //volver atras
+      child: Icon(
+        icon,
+        color: colorIcon,
+        size: responsive.isVertical()
+            ? responsive.altoP(3)
+            : responsive.anchoP(3),
       ),
     );
-    if (select) {
-      wg = Container(
-        margin: EdgeInsets.all(0),
-        padding: EdgeInsets.all(0),
-        decoration: BoxDecoration(
-          borderRadius: BorderRadius.circular(radius),
-        ),
-        child: TextButton.icon(
-          label: Text(titulo,
-              style: TextStyle(
-                  color: Colors.white, fontSize: responsive.diagonalP(2))),
-          icon: Container(
-            height: responsive.diagonalP(3),
-            child: stringImg.length==0?Container(): Image.asset(stringImg),
-          ),
-          style: TextButton.styleFrom(
-            side: BorderSide(width: 2, color: Colors.white),
-            backgroundColor:Colors.white.withOpacity(0.4),
-            shape: RoundedRectangleBorder(
-                borderRadius: BorderRadius.circular(radius),
-                side: BorderSide(color:showLinea? Colors.white.withOpacity(0.5):Colors.transparent)),
-          ),
-          onPressed: onPressed,
-        ),
-      );
-    }
 
     return wg;
-
-    return Expanded(
-      child: wg,
-    );
   }
 }

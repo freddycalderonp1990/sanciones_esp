@@ -31,7 +31,7 @@ class HomePage extends GetView<HomeController> {
           height: responsive.altoP(8),
         ),
         BotonesWidget(
-            iconData: Icons.add_box_rounded,
+            iconData: Icons.edit_square,
             title: "SANCIONES",
             onPressed: () {
               Get.toNamed(AppRoutes.SANCIONES);

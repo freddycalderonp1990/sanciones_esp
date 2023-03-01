@@ -71,10 +71,9 @@ class WgTipoBusqueda extends StatelessWidget {
               ),
               BtnIconWidget(
 
-showLinea: false,
-                select: false,
+
                 onPressed: onTap,
-                stringImg:  AppImages.iconBuscar,
+
               ),
             ],
           ),

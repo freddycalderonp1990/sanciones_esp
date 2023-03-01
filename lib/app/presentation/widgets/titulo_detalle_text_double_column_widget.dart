@@ -1,6 +1,4 @@
-
 part of 'custom_app_widgets.dart';
-
 
 class TituloDetalleTextDoubleColumn extends StatelessWidget {
   final String title1;
@@ -18,7 +16,8 @@ class TituloDetalleTextDoubleColumn extends StatelessWidget {
       required this.detalle1,
       required this.detalle2,
       required this.icon1,
-      required this.icon2,  this.colorTexto=Colors.black})
+      required this.icon2,
+      this.colorTexto = Colors.black})
       : super(key: key);
 
   @override
@@ -30,7 +29,6 @@ class TituloDetalleTextDoubleColumn extends StatelessWidget {
               colorTexto: colorTexto,
               todoElAncho: true,
               title: title1,
-              nameStringImg: icon1,
               detalle: detalle1),
         ),
         Flexible(
@@ -38,12 +36,9 @@ class TituloDetalleTextDoubleColumn extends StatelessWidget {
               colorTexto: colorTexto,
               todoElAncho: true,
               title: title2,
-              nameStringImg: icon2,
               detalle: detalle2),
         ),
       ],
     );
   }
-
-
 }

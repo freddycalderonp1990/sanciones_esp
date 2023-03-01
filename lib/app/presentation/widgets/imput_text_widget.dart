@@ -88,9 +88,7 @@ class _ImputTextWidgetState extends State<ImputTextWidget> {
   InputDecoration getDecorationTxt() {
     return InputDecoration(
 
-        labelStyle: TextStyle(
-            fontSize: widget.fonSize,
-            color: widget.colorLabel.withOpacity(0.8)),
+
         labelText: widget.label,
         hintText: widget.hitText,
         contentPadding: EdgeInsets.symmetric(vertical: 10));
@@ -98,7 +96,7 @@ class _ImputTextWidgetState extends State<ImputTextWidget> {
 
   InputDecoration getDecorationTxtPass() {
     return InputDecoration(
-        labelStyle: TextStyle(fontSize: widget.fonSize),
+
         labelText: widget.label,
         hintText: widget.hitText,
         contentPadding: EdgeInsets.symmetric(vertical: 10),

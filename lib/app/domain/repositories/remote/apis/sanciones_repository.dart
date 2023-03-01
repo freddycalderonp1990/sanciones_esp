@@ -9,6 +9,8 @@ abstract class SancionesRepository {
 
   Future<List<Sancion>> getSanciones(int parentId);
 
+  Future<bool> registreSanctions(SanctionsRequest sanctionsRequest);
+
 
 
 

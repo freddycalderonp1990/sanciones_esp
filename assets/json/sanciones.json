@@ -1,0 +1,198 @@
+{
+  "status_code": 200,
+  "message": "Listado exitosamente",
+  "result": [
+    {
+      "id": 3,
+      "code": "LEGAL_ART39_1",
+      "name": "1",
+      "description": "HACER O FOMENTAR DESORDEN EN LA FORMACIÓN, INSTRUCCIÓN, CLASES O EN CUALQUIER OTRA ACTIVIDAD ACADÉMICA O POLICIAL.",
+      "active": true,
+      "parentId": 2
+    },
+    {
+      "id": 12,
+      "code": "LEGAL_ART39_10",
+      "name": "10",
+      "description": "INOBSERVAR LAS DISCIPLINAS EN LAS FORMACIONES.",
+      "active": true,
+      "parentId": 2
+    },
+    {
+      "id": 13,
+      "code": "LEGAL_ART39_11",
+      "name": "11",
+      "description": "DESOBEDECER ORDENES LEGITIMAS VERBALES O ESCRITAS O INOBSERVAR EL PROCEDIMIENTO ESTABLECIDO.",
+      "active": true,
+      "parentId": 2
+    },
+    {
+      "id": 14,
+      "code": "LEGAL_ART39_12",
+      "name": "12",
+      "description": "MOSTRAR NEGLIGENCIA, DESIDIA, POCO INTERÉS, FALTA DE RESPONSABILIDAD O DORMIRSE EN EL DESARROLLO DE ACTIVIDADES ACADÉMICAS, POLICIALES, DEPORTIVAS O E",
+      "active": true,
+      "parentId": 2
+    },
+    {
+      "id": 15,
+      "code": "LEGAL_ART39_13",
+      "name": "13",
+      "description": "USAR DE MANERA INDEBIDA O NO REGLAMENTARIAMENTE EL UNIFORME, CORTE DE CABELLO, PEINADO, CEJAS, UÑAS, MAQUILLAJE, ACCESORIOS; O, DESCUIDAR SU CORRECTA ",
+      "active": true,
+      "parentId": 2
+    },
+    {
+      "id": 16,
+      "code": "LEGAL_ART39_14",
+      "name": "14",
+      "description": "NO MANTENER EL ORDEN DEL LUGAR DE ESTUDIO, DESCANSO, ARMARIOS O ESCRITORIOS.",
+      "active": true,
+      "parentId": 2
+    },
+    {
+      "id": 17,
+      "code": "LEGAL_ART39_15",
+      "name": "15",
+      "description": "INTERFERIR EL DESCANSO DE LOS SERVIDORES POLICIALES O ASPIRANTES A SERVIDORES POLICIALES, EN LAS HORAS AUTORIZADAS.",
+      "active": true,
+      "parentId": 2
+    },
+    {
+      "id": 18,
+      "code": "LEGAL_ART39_16",
+      "name": "16",
+      "description": "IRRESPETAR EL TURNO DE ATENCIÓN MEDICA O DENTAL, TALLERES, TELÉFONO, PELUQUERÍA, BIBLIOTECA, BAR, CENTRO DE CÓMPUTO, Y DEMÁS DEPENDENCIAS QUE SE RIGEN",
+      "active": true,
+      "parentId": 2
+    },
+    {
+      "id": 19,
+      "code": "LEGAL_ART39_17",
+      "name": "17",
+      "description": "INOBSERVAR EL REGLAMENTO DE INSTRUCCIÓN FORMAL O DE PROTOCOLO PROFESIONAL DURANTE EL PROCESO DE FORMACIÓN.",
+      "active": true,
+      "parentId": 2
+    },
+    {
+      "id": 20,
+      "code": "LEGAL_ART39_18",
+      "name": "18",
+      "description": "HACER USO INADECUADO DE LOS RECURSOS, MEDIOS EDUCATIVOS Y TÉCNICOS DE LOS QUE DISPONEN LOS CENTROS DE FORMACIÓN POLICIAL.",
+      "active": true,
+      "parentId": 2
+    },
+    {
+      "id": 21,
+      "code": "LEGAL_ART39_19",
+      "name": "19",
+      "description": "NO DISPONER DEL UNIFORME COMPLETO, EQUIPO O MÁS IMPLEMENTOS PARA EL CUMPLIMIENTO DE LAS ACTIVIDADES DEL CENTRO DE FORMACIÓN POLICIAL.",
+      "active": true,
+      "parentId": 2
+    },
+    {
+      "id": 4,
+      "code": "LEGAL_ART39_2",
+      "name": "2",
+      "description": "INOBSERVAR EL ASEO Y CUIDADO EN SU PRESENTACIÓN PERSONAL O DE LOS EQUIPOS E INSTRUMENTOS A SU CARGO DENTRO Y FUERA DE LOS CENTROS DE FORMACIÓN POLICIA",
+      "active": true,
+      "parentId": 2
+    },
+    {
+      "id": 22,
+      "code": "LEGAL_ART39_20",
+      "name": "20",
+      "description": "NO CUMPLIR CON LOS PROTOCOLOS DE SEGURIDAD PARA CASOS DE CONTINGENCIA ESTABLECIDOS EN LOS PLANES DE SEGURIDAD.",
+      "active": true,
+      "parentId": 2
+    },
+    {
+      "id": 23,
+      "code": "LEGAL_ART39_21",
+      "name": "21",
+      "description": "NO TRATAR EN TERCERA PERSONA.",
+      "active": true,
+      "parentId": 2
+    },
+    {
+      "id": 24,
+      "code": "LEGAL_ART39_22",
+      "name": "22",
+      "description": "TENER O CONSUMIR ALIMENTOS EN LUGARES Y HORARIOS NO AUTORIZADOS.",
+      "active": true,
+      "parentId": 2
+    },
+    {
+      "id": 25,
+      "code": "LEGAL_ART39_23",
+      "name": "23",
+      "description": "REALIZAR EXPRESIONES, ADEMANES O GESTOS QUE MENOSCABE LA AUTORIDAD O RESPETO A UN SUPERIOR JERÁRQUICO.",
+      "active": true,
+      "parentId": 2
+    },
+    {
+      "id": 26,
+      "code": "LEGAL_ART39_24",
+      "name": "24",
+      "description": "INGRESAR ALIMENTOS NO AUTORIZADOS A LOS CENTROS DE FORMACIÓN POLICIALES.",
+      "active": true,
+      "parentId": 2
+    },
+    {
+      "id": 5,
+      "code": "LEGAL_ART39_3",
+      "name": "3",
+      "description": "NO CONSERVAR EN PERFECTO ESTADO LOS BIENES Y ACTIVOS FIJOS DEL CENTRO DE FORMACIÓN POLICIAL O NO COMUNICAR CUALQUIER DESPERFECTO A LA PERSONA ENCARGAD",
+      "active": true,
+      "parentId": 2
+    },
+    {
+      "id": 6,
+      "code": "LEGAL_ART39_4",
+      "name": "4",
+      "description": "INCUMPLIR LOS HORARIOS ESTABLECIDOS EN LOS PROCEDIMIENTOS OPERATIVOS NORMALES, PLANIFICACIÓN O DISPOSICIONES LEGALES Y REGLAMENTARIAS DE FORMA INJUSTI",
+      "active": true,
+      "parentId": 2
+    },
+    {
+      "id": 7,
+      "code": "LEGAL_ART39_5",
+      "name": "5",
+      "description": "INOBSERVAR LAS NORMAS DE RESPETO A LOS SÍMBOLOS PATRIOS E INSTITUCIONALES.",
+      "active": true,
+      "parentId": 2
+    },
+    {
+      "id": 8,
+      "code": "LEGAL_ART39_6",
+      "name": "6",
+      "description": "NO SALUDAR, ELUDIR EL SALUDO O NO CONTESTARLO, DENTRO Y FUERA DEL CENTRO DE FORMACIÓN POLICIAL.",
+      "active": true,
+      "parentId": 2
+    },
+    {
+      "id": 9,
+      "code": "LEGAL_ART39_7",
+      "name": "7",
+      "description": "RECIBIR VISITAS O ENTREVISTARSE CON PERSONAS PARTICULARES SIN PREVIA AUTORIZACIÓN, EXCEPTUANDO LAS ENTREVISTAS REALIZADAS POR AUTORIDADES JUDICIALES Y",
+      "active": true,
+      "parentId": 2
+    },
+    {
+      "id": 10,
+      "code": "LEGAL_ART39_8",
+      "name": "8",
+      "description": "OMITIR EL ÓRGANO REGULAR.",
+      "active": true,
+      "parentId": 2
+    },
+    {
+      "id": 11,
+      "code": "LEGAL_ART39_9",
+      "name": "9",
+      "description": "HACER MAL USO, O EMPLEAR EN LUGARES Y HORARIOS NO AUTORIZADOS: TELÉFONOS FIJOS O MÓVILES, RADIOS Y DEMÁS ELEMENTOS ELECTRÓNICOS Y/O ELÉCTRICOS.",
+      "active": true,
+      "parentId": 2
+    }
+  ]
+}

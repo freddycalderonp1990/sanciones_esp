@@ -6,6 +6,7 @@ import 'package:flutter/cupertino.dart';
 import 'package:flutter/services.dart';
 import 'package:flutter_pdfview/flutter_pdfview.dart';
 import 'package:qr_code_scanner/qr_code_scanner.dart';
+import '../../core/theme/app_theme.dart';
 import '../../core/utils/photo_helper.dart';
 import '../../core/utils/utilidadesUtil.dart';
 import '../widgets/custom_app_widgets.dart';

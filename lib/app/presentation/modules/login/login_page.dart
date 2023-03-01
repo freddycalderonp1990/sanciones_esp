@@ -3,8 +3,8 @@ part of '../pages.dart';
 class LoginPage extends GetView<LoginController> {
   final _formKey = GlobalKey<FormState>();
 
-  var controllerUser = new TextEditingController();
-  var controllerPass = new TextEditingController();
+  var controllerUser = TextEditingController();
+  var controllerPass = TextEditingController();
 
   void login({bool validarForm = true}) async {
     var isValid = true;
@@ -15,18 +15,20 @@ class LoginPage extends GetView<LoginController> {
 
     if (isValid) {
       await controller.login();
-
     }
   }
 
   @override
   Widget build(BuildContext context) {
     final responsive = ResponsiveUtil();
+
+
     Widget wg = Obx(() => WorkAreaLoginPageWidget(
           mostrarVersion: true,
           imgFondo: AppImages.imgFondoLogin,
           peticionServer: controller.peticionServerState,
-          title: 'ESCUELA SUPERIOR DE POLICÍA \n«Gral. Alberto Enrríquez Gallo»',
+          title:
+              'ESCUELA SUPERIOR DE POLICÍA \n«Gral. Alberto Enrríquez Gallo»',
           sizeTittle: 6,
           contenido: <Widget>[
             SizedBox(
@@ -35,6 +37,7 @@ class LoginPage extends GetView<LoginController> {
             Column(
               children: <Widget>[
                 controller.wgLoginUserPass.value
+
                     ? WgLogin(
                         onPressed: () => login(),
                         controllerPass: controller.controllerPass,
@@ -42,7 +45,6 @@ class LoginPage extends GetView<LoginController> {
                         formKey: _formKey,
                       )
                     : Container(),
-
                 SizedBox(
                   height: responsive.altoP(3.5),
                 ),
@@ -51,12 +53,8 @@ class LoginPage extends GetView<LoginController> {
           ],
         ));
 
-
-
     return GetBuilder<LoginController>(
       builder: (_c) => wg,
     );
   }
-
-
 }

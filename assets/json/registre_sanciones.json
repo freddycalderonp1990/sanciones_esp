@@ -1,0 +1,16 @@
+{
+  "status_code": 200,
+  "message": "Creado con éxito",
+  "result": {
+    "code": 1,
+    "missingDescription": "botas malas",
+    "dateSanction": "2023-02-01",
+    "dateRegistration": "2023-02-01",
+    "instructor": 1375,
+    "cadet": 995,
+    "sectionPromotion": 1,
+    "legalRegulation": 1,
+    "score": 20,
+    "statusSanction": 33
+  }
+}

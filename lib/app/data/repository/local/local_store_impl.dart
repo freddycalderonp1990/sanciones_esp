@@ -1,7 +1,10 @@
 part of '../data_repositories.dart';
 
 class LocalStoreImpl extends LocalStorageRepository {
-  final LocalStoreProviderImpl _localStoreProviderImpl = Get.find();
+  final LocalStoreProviderImpl _localStoreProviderImpl;
+
+  LocalStoreImpl(this._localStoreProviderImpl);
+
 
   @override
   Future<void> clearAllData() async {

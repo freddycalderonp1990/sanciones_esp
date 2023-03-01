@@ -286,8 +286,10 @@ class _ComboConBusquedaState extends State<ComboConBusqueda> {
                           iconUrl: dataSelect.value.imgUrl,
                           detalle: "")),
                       Expanded(
-                        child: Obx(() => DetalleTextWidget(
-                              detalle: completeText.value,
+                        child: Obx(() => Text(
+                              completeText.value,
+                          style: TextStyle(color: AppColors.colorAzulSecond,fontWeight: FontWeight.bold),
+
 
                             )),
                       ),

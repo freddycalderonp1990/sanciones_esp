@@ -1,7 +1,11 @@
 part of '../../data_repositories.dart';
 
 class AuthApiImpl extends AuthRepository {
-  final AuthApiProviderImpl _authApiProviderImpl = Get.find();
+  final  _authApiProviderImpl;
+
+  AuthApiImpl(this._authApiProviderImpl) ;
+
+
 
   @override
   Future<AuthModel> auth(AuthRequest authRequest) async {

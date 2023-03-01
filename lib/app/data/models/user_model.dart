@@ -15,15 +15,14 @@ class AuthModel {
   String access;
   UserData userData;
 
-  factory AuthModel.empty() => AuthModel(
-      refresh: '',
-      access: '',
-      userData: UserData.empty());
+  factory AuthModel.empty() =>
+      AuthModel(refresh: '', access: '', userData: UserData.empty());
 
   factory AuthModel.fromJson(Map<String, dynamic> json) => AuthModel(
         refresh: json["refresh"],
         access: json["access"],
-        userData: UserData.fromJson(json["user"]!=null?json["user"]:json["user_data"]),
+        userData: UserData.fromJson(
+            json["user"] != null ? json["user"] : json["user_data"]),
       );
 
   Map<String, dynamic> toJson() => {
@@ -34,18 +33,19 @@ class AuthModel {
 }
 
 class UserData {
-  UserData({
-    required this.id,
-    required this.name,
-    required this.username,
-    required this.email,
-    required this.isSuperuser,
-    required this.groups,
-    required this.permissions,
-    required this.menu,
-  });
+  UserData(
+      {required this.id,
+      required this.name,
+      required this.username,
+      required this.email,
+      required this.isSuperuser,
+      required this.groups,
+      required this.permissions,
+      required this.menu,
+      required this.person_id});
 
   int id;
+  int person_id;
   String name;
   String username;
   String email;
@@ -56,6 +56,7 @@ class UserData {
 
   factory UserData.empty() => UserData(
       id: 0,
+      person_id: 0,
       name: '',
       username: '',
       email: '',
@@ -66,6 +67,7 @@ class UserData {
 
   factory UserData.fromJson(Map<String, dynamic> json) => UserData(
         id: ParseModel.parseToInt(json["id"]),
+        person_id: ParseModel.parseToInt(json["person_id"]),
         name: ParseModel.parseToString(json["name"]),
         username: ParseModel.parseToString(json["username"]),
         email: ParseModel.parseToString(json["email"]),
@@ -77,6 +79,7 @@ class UserData {
 
   Map<String, dynamic> toJson() => {
         "id": id,
+        "person_id": person_id,
         "name": name,
         "username": username,
         "email": email,

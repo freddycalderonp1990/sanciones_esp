@@ -1,13 +1,9 @@
 part of '../controllers.dart';
 
 class LoginController extends GetxController {
-  final LocalStoreImpl _LocalStoreImpl =
-  Get.find<LocalStoreImpl>();
-  final AuthApiImpl _apiUserRepository = Get.find<AuthApiImpl>();
-  final Rx< AuthModel> user = AuthModel.empty().obs;
-
-
-
+  final LocalStoreImpl _LocalStoreImpl = Get.find<LocalStoreImpl>();
+  final AuthApiImpl _authApiImpl = Get.find<AuthApiImpl>();
+  final Rx<AuthModel> user = AuthModel.empty().obs;
 
   GlobalKey<FormState> formKey = GlobalKey<FormState>();
   GlobalKey<FormState> formKey2 = GlobalKey<FormState>();
@@ -31,8 +27,7 @@ class LoginController extends GetxController {
 
   RxBool mostrarBtnGuardarPinCode = false.obs;
 
-
-  int contadorLogin2=0;
+  int contadorLogin2 = 0;
 
   @override
   void onInit() {
@@ -59,17 +54,12 @@ class LoginController extends GetxController {
   Future<void> login() async {
     var isValid = true;
 
-
-
     if (formKey.currentState == null) {
       formKey = GlobalKey<FormState>();
       isValid = true;
-    }
-    else{
+    } else {
       isValid = formKey.currentState!.validate();
     }
-
-
 
     if (!isValid) {
       return;
@@ -78,30 +68,21 @@ class LoginController extends GetxController {
     final _user = this.controllerUser.text;
     final _pass = this.controllerPass.text;
 
-
-
-
     bool isAndroid = true;
     int versionCodeApp = 0;
     String imei = 'imei';
     String tipoRed = 'movil';
     String nameRed = 'namered';
 
-
-
     try {
       peticionServerState(true);
-
 
       //Encryptamos la clave
       String clave = EncriptarUtil.generateSha512(_pass);
 
-
-
-      final userResponse = await _apiUserRepository.auth(AuthRequest(
-          username: _user,
-          password: _pass,
-
+      final userResponse = await _authApiImpl.auth(AuthRequest(
+        username: _user,
+        password: _pass,
       ));
 
       await _LocalStoreImpl.setToken(userResponse.access);
@@ -114,7 +95,7 @@ class LoginController extends GetxController {
 
       InciarPantalla(false);
 
-    /*  if (!userResponse.actualizarApp) {
+      /*  if (!userResponse.actualizarApp) {
         print('esperando mostrar biometrico es:');
 
        // _setCodePin();
@@ -129,14 +110,9 @@ class LoginController extends GetxController {
       }*/
     } on ServerException catch (e) {
       peticionServerState(false);
-        DialogosAwesome.getError(descripcion: e.cause);
-
+      DialogosAwesome.getError(descripcion: e.cause);
     }
   }
-
-
-
-
 
   _init() async {
     /*controllerUser.text="cpfn1206762401";
@@ -146,7 +122,6 @@ class LoginController extends GetxController {
       wgOcultarLoginUserPass.value = true;
     }
   }
-
 
   Future<bool> verificarCredenciales() async {
     String user = await _LocalStoreImpl.getUser();
@@ -195,10 +170,8 @@ class LoginController extends GetxController {
   _setCodePin() {
     DialogosAwesome.getInformationSi(
         descripcion:
-        "Configure un código.\n\nCon este codigo  usted podra ingresar de manera más facil al sistema",
-        btnOkOnPress: () {
-
-        });
+            "Configure un código.\n\nCon este codigo  usted podra ingresar de manera más facil al sistema",
+        btnOkOnPress: () {});
   }
 
   _setBiometrico({bool actualizarApp = false, required String foto}) async {
@@ -297,26 +270,22 @@ class LoginController extends GetxController {
   void guardarPinCode() {
     DialogosAwesome.getInformationSiNo(
         descripcion:
-        "Ingreso el código: [${valueCode.value}], desea continuar?",
+            "Ingreso el código: [${valueCode.value}], desea continuar?",
         btnOkOnPress: () async {
           Get.back();
           String code = EncriptarUtil.generateSha512(valueCode.value);
 
           await _LocalStoreImpl.setPinCode(code);
           await _setBiometrico(
-              actualizarApp: false,
-              foto: "userResponse.foto.fotoBase64");
+              actualizarApp: false, foto: "userResponse.foto.fotoBase64");
         },
         btnCancelOnPress: () {});
   }
 
-  String getName(){
+  String getName() {
     String nombre = user.value.userData.name;
-    String res= "Bienvenid@: " + nombre
-       ;
+    String res = "Bienvenid@: " + nombre;
 
     return res.toUpperCase();
   }
-
-
 }

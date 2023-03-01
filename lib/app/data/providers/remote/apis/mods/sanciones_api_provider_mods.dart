@@ -1,14 +1,13 @@
-part of '../../providers_impl.dart';
+part of 'mods_impl.dart';
 
-
-class SancionesApiProviderImpl extends SancionesRepository {
+class SancionesApiProviderModsImpl extends SancionesRepository {
 
 
   @override
   Future<List<Sancion>> getSanciones(int parentId) async {
 
-    String json = await UrlApiProvider.get(
-        segmento: 'catalogs?parentId=${parentId}');
+    final String json = await rootBundle.loadString('assets/json/sanciones.json');
+
 
     return sancionesModelFromJson(json).sancion;
   }
@@ -27,8 +26,8 @@ class SancionesApiProviderImpl extends SancionesRepository {
       "score":sanctionsRequest.score,
       "statusSanction":sanctionsRequest.statusSanction
     };
-    String json = await UrlApiProvider.post(
-        body: body, segmento: 'sanctions');
+    final String json = await rootBundle.loadString('assets/json/registre_sanciones.json');
+
 
 
     CabeceraModel cabeceraRequest=  cabeceraModelFromJson(json);

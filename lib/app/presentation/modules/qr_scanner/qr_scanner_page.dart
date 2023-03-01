@@ -25,7 +25,7 @@ class QrScannerPage extends GetView<QrScannerController> {
       child: Column(
         children: [
 
-    BtnIconWidget(onPressed: (){},titulo: "QR"),
+    BtnIconWidget(onPressed: (){}),
 
           Text('SANCIÓN DISCIPLINARIA LEVE',
               textAlign: TextAlign.center,

@@ -1,19 +1,41 @@
-import 'package:flutter/material.dart' show Color, Colors;
+import 'package:flutter/material.dart' show Color, Colors, MaterialColor;
 
 class AppColors {
-  static Color prymary = Color(0xFF167D42);
+  static Color prymary = AppColors.colorAzulSecond;
+  static Color second = AppColors.colorAzul;
 
   static final dark = Color(0xFF03091E);
 
   static const Color colorTextos =Colors.white;
 
-
   static const Color colorBotones = AppColors.colorAzulSecond_20;
   static const Color colorCajas = Color(0XFFeceff4);
 
 
+ static  MaterialColor getMaterialColor(Color color) {
+    final int red = color.red;
+    final int green = color.green;
+    final int blue = color.blue;
 
-  static const Color colorBackground = AppColors.colorAzul;
+    final Map<int, Color> shades = {
+      50: Color.fromRGBO(red, green, blue, .1),
+      100: Color.fromRGBO(red, green, blue, .2),
+      200: Color.fromRGBO(red, green, blue, .3),
+      300: Color.fromRGBO(red, green, blue, .4),
+      400: Color.fromRGBO(red, green, blue, .5),
+      500: Color.fromRGBO(red, green, blue, .6),
+      600: Color.fromRGBO(red, green, blue, .7),
+      700: Color.fromRGBO(red, green, blue, .8),
+      800: Color.fromRGBO(red, green, blue, .9),
+      900: Color.fromRGBO(red, green, blue, 1),
+    };
+
+    return MaterialColor(color.value, shades);
+  }
+
+
+  static  MaterialColor colorBackground = getMaterialColor(colorAzul);
+
 
 
   static const Color colorBordeBotones = Colors.red;

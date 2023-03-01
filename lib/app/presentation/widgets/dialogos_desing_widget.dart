@@ -1,6 +1,10 @@
 part of 'custom_app_widgets.dart';
 
 class DialogosDesingWidget {
+
+
+
+
   static getDialogoX({String title = '', Widget? contenido, Widget? botones}) {
     final responsive = ResponsiveUtil();
     return showDialog(

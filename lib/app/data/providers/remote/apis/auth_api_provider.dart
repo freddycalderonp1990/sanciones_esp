@@ -5,13 +5,11 @@ class AuthApiProviderImpl extends AuthRepository {
   @override
   Future<AuthModel> auth(AuthRequest authRequest) async {
 
-
       Object? body = {
         "username": authRequest.username,
         "password": authRequest.password,
 
       };
-
 
       String json = await UrlApiProvider.post(
           isLogin: true, body: body, segmento: 'api/token/create');

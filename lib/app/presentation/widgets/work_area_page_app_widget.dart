@@ -81,7 +81,7 @@ class _WorkAreaPageAppWidgetState extends State<WorkAreaPageAppWidget> {
                 width: 2,
               ),
               widget.btnAtras
-                  ? desingBtncabecera(
+                  ? BtnIconWidget(
                       onPressed: () => Get.back(), icon: Icons.arrow_back)
                   : Container(),
               Expanded(
@@ -96,7 +96,7 @@ class _WorkAreaPageAppWidgetState extends State<WorkAreaPageAppWidget> {
                           : responsive.anchoP(widget.sizeTittle)),
                 ),
               ),
-              desingBtncabecera(
+              BtnIconWidget(
                   onPressed: () {
                     Get.offAllNamed(AppRoutes.SPLASH);
                   },
@@ -163,8 +163,7 @@ class _WorkAreaPageAppWidgetState extends State<WorkAreaPageAppWidget> {
 
     return Scaffold(
         backgroundColor: AppColors.colorBackground,
-        floatingActionButtonLocation: widget.ubicacionBtnFinal,
-        floatingActionButton: widget.widgetBtnFinal,
+
         body: GestureDetector(
             onTap: () {
               FocusScope.of(context).requestFocus(FocusNode());
@@ -233,29 +232,7 @@ class _WorkAreaPageAppWidgetState extends State<WorkAreaPageAppWidget> {
     );
   }
 
-  desingBtncabecera({VoidCallback? onPressed, IconData? icon}) {
-    final responsive = ResponsiveUtil();
 
-    return SafeArea(
-      child: CupertinoButton(
-        minSize: responsive.isVertical()
-            ? responsive.altoP(5)
-            : responsive.anchoP(5),
-        padding: EdgeInsets.all(3),
-        borderRadius: BorderRadius.circular(30),
-        color: Colors.black26,
-        onPressed: onPressed,
-        //volver atras
-        child: Icon(
-          icon,
-          color: Colors.white,
-          size: responsive.isVertical()
-              ? responsive.altoP(3)
-              : responsive.anchoP(3),
-        ),
-      ),
-    );
-  }
 }
 
 class imgPerfilRedonda extends StatefulWidget {

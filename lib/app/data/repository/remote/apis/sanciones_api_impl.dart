@@ -1,9 +1,9 @@
 part of '../../data_repositories.dart';
 
 class SancionesApiImpl extends SancionesRepository {
-  final SancionesApiProviderImpl _sancionesProviderImpl = Get.find();
+  final  _sancionesProviderImpl;
 
-
+  SancionesApiImpl(this._sancionesProviderImpl);
 
   @override
   Future<List<Sancion>> getSanciones(int parentId) async {
@@ -21,6 +21,15 @@ class SancionesApiImpl extends SancionesRepository {
     try {
 
       return   await getSanciones(2);
+    }  catch (e){
+      throw ExceptionHelper.captureError(e);
+    }
+  }
+
+  @override
+  Future<bool> registreSanctions(SanctionsRequest sanctionsRequest) async {
+    try {
+      return   await _sancionesProviderImpl.registreSanctions(sanctionsRequest);
     }  catch (e){
       throw ExceptionHelper.captureError(e);
     }

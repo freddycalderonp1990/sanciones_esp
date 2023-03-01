@@ -60,7 +60,7 @@ class WgTipoBusqueda extends StatelessWidget {
                       label: title,
                       fonSize: responsive.diagonalP(2),
                       validar: (value) {
-                        if (value.toString().length == 0) {
+                        if (value.toString().length == 0 || value.toString().length<10) {
                           return msjError;
                         }
                       },
@@ -71,10 +71,10 @@ class WgTipoBusqueda extends StatelessWidget {
               ),
               BtnIconWidget(
 
-showLinea: false,
-                select: false,
+
+
                 onPressed: onTap,
-                stringImg:  AppImages.iconBuscar,
+                  icon:Icons.search
               ),
             ],
           ),

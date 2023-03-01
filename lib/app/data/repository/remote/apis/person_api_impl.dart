@@ -1,10 +1,10 @@
 part of '../../data_repositories.dart';
 
 class PersonApiImpl extends PersonRepository {
-  final PersonApiProviderImpl _personProviderImpl = Get.find();
+  final  _personProviderImpl;
 
 
-
+  PersonApiImpl(this._personProviderImpl);
 
 
 

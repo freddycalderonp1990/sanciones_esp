@@ -5,6 +5,7 @@ import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:cached_network_image/cached_network_image.dart';
 import 'package:flutter_awesome_bottom_sheet/flutter_awesome_bottom_sheet.dart';
+import 'package:intl/intl.dart';
 
 import '../../core/utils/responsiveUtil.dart';
 import '../../core/utils/utilidadesUtil.dart';
@@ -32,5 +33,6 @@ part 'btnMenuWidget.dart';
 part 'botones_widget.dart';
 part 'dialogos_desing_widget.dart';
 part 'btn_icon_widget.dart';
+part 'dialogo_fecha_hora_widget.dart';
 
 part 'combos/combo_con_busqueda.dart';

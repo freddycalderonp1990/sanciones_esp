@@ -19,7 +19,7 @@ class SancionesPage extends GetView<SancionesController> {
     Widget wg = SingleChildScrollView(
       child: Column(
         children: [
-          BtnIconWidget(
+          /* BtnIconWidget(
               titulo: "Qr",
               onPressed: () {
                 DialogosDesingWidget.getDialogoX(
@@ -41,6 +41,8 @@ class SancionesPage extends GetView<SancionesController> {
                       ),
                     ));
               }),
+
+              */
           Obx(
             () => Text(controller.cedulaQr.value),
           ),
@@ -81,27 +83,40 @@ class SancionesPage extends GetView<SancionesController> {
         getWdSanciones(),
         ContenedorDesingWidget(
           margin: const EdgeInsets.all(8.0),
-          child: TextField(
-            style: TextStyle(color: Colors.white),
-            decoration: InputDecoration(
-                border: InputBorder.none,
-                hintStyle: TextStyle(color: Colors.black),
-                labelStyle: TextStyle(
-                    fontSize: responsive.diagonalP(AppConfig.tamTexto + 0.5),
-                    color: AppColors.colorTextos),
-                labelText: "Observación",
-                hintText: "Escriba....",
-                alignLabelWithHint: false,
-                filled: true),
-            keyboardType: TextInputType.multiline,
-            maxLines: 2,
-            textInputAction: TextInputAction.done,
-          ),
+          child: Form(
+              key: controller.keyObservacion,
+              child: TextFormField(
+                validator: (value) {
+                  if (value.toString().length == 0) {
+                    return "Ingrese la observación";
+                  }
+                },
+                controller: controller.controllerObservacion,
+                style: TextStyle(color: Colors.white),
+                decoration: InputDecoration(
+                    border: InputBorder.none,
+                    hintStyle: TextStyle(color: Colors.black),
+                    labelStyle: TextStyle(
+                        fontWeight: FontWeight.bold,
+                        fontSize:
+                            responsive.diagonalP(AppConfig.tamTexto + 0.5),
+                        color: AppColors.colorAzulSecond),
+                    labelText: "Observación",
+                    hintText: "Escriba....",
+                    alignLabelWithHint: false,
+                    filled: true),
+                keyboardType: TextInputType.multiline,
+                maxLines: 2,
+                textInputAction: TextInputAction.done,
+              )),
         ),
         Container(
-          height: responsive.altoP(8),
+          height: responsive.altoP(2),
         ),
-        BotonesWidget(iconData: Icons.save, title: "GUARDAR", onPressed: () {}),
+        BotonesWidget(
+            iconData: Icons.save,
+            title: "REGISTRAR",
+            onPressed: () => controller.registreSanctions()),
       ],
     );
   }
@@ -115,9 +130,6 @@ class SancionesPage extends GetView<SancionesController> {
             children: [
               Expanded(
                 child: BtnIconWidget(
-                  select: controller.selectCedula.value,
-                  stringImg: AppImages.iconNumero,
-                  titulo: "Cédula",
                   onPressed: () {
                     controller.selectCedula.value = true;
                     controller.selectNombres.value = false;
@@ -215,7 +227,7 @@ class SancionesPage extends GetView<SancionesController> {
     }
 
     double separacionText = 5;
-    Color colorTexto = Colors.black;
+
     Widget wg = ContenedorDesingWidget(
         paddin: EdgeInsets.all(5),
         anchoPorce: 95,
@@ -223,26 +235,48 @@ class SancionesPage extends GetView<SancionesController> {
               children: [
                 wgFoto,
                 IconTitleDetalleWidget(
-                    colorTexto: colorTexto,
-                    nameStringImg: AppImages.iconUsuario,
+                    icon: Icons.business,
                     detalle: controller.dataCedete.value.promotion,
                     title: "COMPAÑIA:"),
                 SizedBox(
                   height: separacionText,
                 ),
                 IconTitleDetalleWidget(
-                    colorTexto: colorTexto,
-                    nameStringImg: AppImages.iconUsuario,
+                    icon: Icons.assignment_ind,
                     detalle: controller.dataCedete.value.person.namesComplete,
                     title: "NOMBRES:"),
                 SizedBox(
                   height: separacionText,
                 ),
                 IconTitleDetalleWidget(
-                    colorTexto: colorTexto,
-                    nameStringImg: AppImages.iconUsuario,
+                    icon: Icons.beenhere,
                     detalle: controller.dataCedete.value.section,
                     title: "SECCIÓN:"),
+                SizedBox(
+                  height: separacionText,
+                ),
+                Row(
+                  children: [
+                    Flexible(
+                      child: IconTitleDetalleWidget(
+                          icon: Icons.date_range,
+                          detalle: controller.fechaActual.value,
+                          title: "FECHA SANCIÓN:"),
+                    ),
+                    BtnIconWidget(
+                      onPressed: () {
+
+                        print("holaa");
+                        showDialogoFechaHoraWidget(Get.context!,
+                            initialDate: controller.dateFechaNow,
+                            mostrarHora: true, onSelectedDate: (selectedDate) {
+                          controller.setFecha(selectedDate);
+                        });
+                      },
+                      icon: Icons.date_range_outlined,
+                    )
+                  ],
+                )
               ],
             )));
 
@@ -256,10 +290,10 @@ class SancionesPage extends GetView<SancionesController> {
       child: Obx(() => ComboConBusqueda(
           title: "Sanciónes Leves Art. 39",
           titleSelecioneEl: "Seleccione el literal",
-          selectValue: controller.dataSelect,
+          selectValue: controller.dataSelectSanciones,
           data: controller.dataCombo.value,
           complete: (data) {
-            controller.dataSelect.value = data;
+            controller.dataSelectSanciones.value = data;
             print("daaaa");
           })),
     );

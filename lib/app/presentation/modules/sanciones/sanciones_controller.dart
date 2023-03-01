@@ -5,9 +5,12 @@ class SancionesController extends GetxController {
   QRViewController? controller;
   final GlobalKey qrKey = GlobalKey(debugLabel: 'QR');
 
-  BuildContext ctxDialogoQr=Get.context!;
+  DateTime dateFechaNow = DateTime.now();
+
+  BuildContext ctxDialogoQr = Get.context!;
 
   RxString cedulaQr = ''.obs;
+  RxString fechaActual = ''.obs;
 
   var peticionServerState = false.obs;
   var selectCedula = true.obs;
@@ -16,14 +19,17 @@ class SancionesController extends GetxController {
 
   Rx<DataCadete> dataCedete = DataCadete.empty().obs;
 
-  var controllerCedula = new TextEditingController();
-  var controllerNombres = new TextEditingController();
+  var controllerCedula = TextEditingController();
+  var controllerNombres = TextEditingController();
+  var controllerObservacion = TextEditingController();
 
   final keyNombres = GlobalKey<FormState>();
   final keyCedula = GlobalKey<FormState>();
+  final keyObservacion = GlobalKey<FormState>();
 
   RxList<ModelDataCombo> dataCombo = <ModelDataCombo>[].obs;
-  Rx<ModelDataCombo> dataSelect = ModelDataCombo(id: 0, titulo: "").obs;
+  Rx<ModelDataCombo> dataSelectSanciones =
+      ModelDataCombo(id: 0, titulo: "").obs;
 
   final loginController = Get.find<LoginController>();
   final SancionesApiImpl _sancionesApiImpl = Get.find<SancionesApiImpl>();
@@ -40,15 +46,23 @@ class SancionesController extends GetxController {
 
   @override
   void onInit() {
+    user = loginController.user.value;
+
+
+    setFecha(dateFechaNow);
+
     getSancionesLeves();
 
     super.onInit();
   }
 
+  setFecha(dateFecha){
+    dateFechaNow = dateFecha;
+    fechaActual.value =   DateFormat(AppConfig.formatoFecha).format(dateFecha);
+  }
+
   @override
   void onReady() {
-    user = loginController.user.value;
-
     super.onReady();
   }
 
@@ -101,13 +115,11 @@ class SancionesController extends GetxController {
 
           if (resul) {
             controllerCedula.text = cedula;
-           // Navigator.pop(ctxDialogoQr);
-
+            // Navigator.pop(ctxDialogoQr);
 
             Navigator.of(Get.context!).pop();
-          }
-          else{
-          //  DialogosAwesome.getError(descripcion: "Qr, No Valido");
+          } else {
+            //  DialogosAwesome.getError(descripcion: "Qr, No Valido");
           }
         }
       }
@@ -156,6 +168,51 @@ class SancionesController extends GetxController {
       peticionServerState(false);
     } on ServerException catch (e) {
       showDatos.value = false;
+      peticionServerState(false);
+      DialogosAwesome.getError(descripcion: e.cause);
+    }
+  }
+
+  registreSanctions() async {
+    try {
+      if (!keyObservacion.currentState!.validate()) {
+        return;
+      }
+
+      if (dataSelectSanciones.value.id == 0) {
+        DialogosAwesome.getWarning(descripcion: "Seleccione una sanción");
+        return;
+      }
+
+      peticionServerState(true);
+      FocusScope.of(Get.context!).requestFocus(new FocusNode());
+
+      int estadoSancion = 33;
+
+      SanctionsRequest sanctionsRequest = SanctionsRequest(
+          code: 1,
+          missingDescription: controllerObservacion.text,
+          instructor: loginController.user.value.userData.person_id,
+          cadet: dataCedete.value.person.id,
+          sectionPromotion: 1,
+          score: 20,
+          legalRegulation: dataSelectSanciones.value.id,
+          dateSanction: "2023-02-01",
+          dateRegistration: "2023-02-01",
+          statusSanction: estadoSancion);
+
+      bool result = await _sancionesApiImpl.registreSanctions(sanctionsRequest);
+      if (!result) {
+        DialogosAwesome.getWarning(descripcion: "No se completó el registro");
+      }
+      else{
+        DialogosAwesome.getSucess(descripcion: "Sanción registrada con éxito");
+
+
+      }
+
+      peticionServerState(false);
+    } on ServerException catch (e) {
       peticionServerState(false);
       DialogosAwesome.getError(descripcion: e.cause);
     }

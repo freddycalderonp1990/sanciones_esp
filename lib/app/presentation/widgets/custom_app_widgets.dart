@@ -36,3 +36,6 @@ part 'btn_icon_widget.dart';
 part 'dialogo_fecha_hora_widget.dart';
 
 part 'combos/combo_con_busqueda.dart';
+part 'combos/combo_normal.dart';
+
+part 'periodo_widget.dart';

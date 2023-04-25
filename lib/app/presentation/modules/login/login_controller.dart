@@ -81,6 +81,7 @@ class LoginController extends GetxController {
       String clave = EncriptarUtil.generateSha512(_pass);
 
       final userResponse = await _authApiImpl.auth(AuthRequest(
+
         username: _user,
         password: _pass,
       ));
@@ -133,6 +134,8 @@ class LoginController extends GetxController {
       print('mostrar huella');
 
       this.user.value = await _LocalStoreImpl.getUserModel();
+
+      AppConfig.user=this.user.value;
       this.user.refresh();
 
       bool configHuella = await _LocalStoreImpl.getConfigHuella();

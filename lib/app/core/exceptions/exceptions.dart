@@ -42,7 +42,15 @@ class ServerException implements Exception {
       String msjException = ''}) {
     String mesage = 'No definido';
 
-    switch (statusCode) {
+
+
+    switch (statusCode){
+
+      case 204: //NO CONTENT
+        mesage =
+        "No existen datos";
+        break;
+
       case 404: //HTTP_NOT_FOUND
         mesage =
             "No es posible conectar con el servidor. Pagina no encontrada.";

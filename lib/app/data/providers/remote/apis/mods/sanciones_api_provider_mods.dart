@@ -4,16 +4,16 @@ class SancionesApiProviderModsImpl extends SancionesRepository {
 
 
   @override
-  Future<List<Sancion>> getSanciones(int parentId) async {
+  Future<List<SancionesModel>> getSanciones(int parentId) async {
 
     final String json = await rootBundle.loadString('assets/json/sanciones.json');
 
 
-    return sancionesModelFromJson(json).sancion;
+    return sancionesModelFromJson(json);
   }
 
   @override
-  Future<bool> registreSanctions(SanctionsRequest sanctionsRequest) async {
+  Future<String> registreSanctions(SanctionsRequest sanctionsRequest) async {
     Object? body = {
       "code": sanctionsRequest.code,
       "missingDescription": sanctionsRequest.missingDescription,
@@ -30,18 +30,26 @@ class SancionesApiProviderModsImpl extends SancionesRepository {
 
 
 
+
+
     CabeceraModel cabeceraRequest=  cabeceraModelFromJson(json);
     print(cabeceraRequest.message);
     print(cabeceraRequest.statusCode);
 
     if(cabeceraRequest.statusCode==200 && cabeceraRequest.message=="Creado con éxito" ){
-      return true;
+      return '1';
     }
     else{
-      return false;
+      return '';
     }
 
 
+  }
+
+  @override
+  Future<List<ConsultSanctionModel>> getSancionesPorFecha({required String fechaDesde, required String fechaHasta, required int idInstructor}) {
+    // TODO: implement getSancionesPorFecha
+    throw UnimplementedError();
   }
 
 

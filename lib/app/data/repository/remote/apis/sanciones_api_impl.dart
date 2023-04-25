@@ -1,12 +1,12 @@
 part of '../../data_repositories.dart';
 
 class SancionesApiImpl extends SancionesRepository {
-  final  _sancionesProviderImpl;
+  final SancionesApiProviderImpl  _sancionesProviderImpl;
 
   SancionesApiImpl(this._sancionesProviderImpl);
 
   @override
-  Future<List<Sancion>> getSanciones(int parentId) async {
+  Future<List<SancionesModel>> getSanciones(int parentId) async {
     try {
 
 
@@ -17,7 +17,7 @@ class SancionesApiImpl extends SancionesRepository {
   }
 
 
-  Future<List<Sancion>> getSancionesLeves() async {
+  Future<List<SancionesModel>> getSancionesLeves() async {
     try {
 
       return   await getSanciones(2);
@@ -27,12 +27,19 @@ class SancionesApiImpl extends SancionesRepository {
   }
 
   @override
-  Future<bool> registreSanctions(SanctionsRequest sanctionsRequest) async {
+  Future<String> registreSanctions(SanctionsRequest sanctionsRequest) async {
     try {
       return   await _sancionesProviderImpl.registreSanctions(sanctionsRequest);
     }  catch (e){
       throw ExceptionHelper.captureError(e);
     }
+  }
+
+  @override
+  Future<List<ConsultSanctionModel>> getSancionesPorFecha({required String fechaDesde, required String fechaHasta, required int idInstructor}) async {
+
+      return   await _sancionesProviderImpl.getSancionesPorFecha(fechaDesde: fechaDesde, fechaHasta: fechaHasta,idInstructor: idInstructor);
+
   }
 
 

@@ -13,7 +13,8 @@ class ParseModel {
   }
 
   static String parseToString(var value) {
-    return value == null
+
+      return value == null
         ? ""
         : value is String
             ? value

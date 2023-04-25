@@ -5,8 +5,6 @@ abstract class LocalStorageRepository{
   //Se define que cosas quiero hacer
   //se definen los contartos
 
-
-
   Future<AuthModel> getUserModel();
   Future<void> setUserModel(AuthModel user);
 

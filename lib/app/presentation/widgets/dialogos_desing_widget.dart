@@ -7,8 +7,11 @@ class DialogosDesingWidget {
 
   static getDialogoX({String title = '', Widget? contenido, Widget? botones}) {
     final responsive = ResponsiveUtil();
+
+
+
     return showDialog(
-      context: Get.context!,
+      context:Get.context!,
       builder: (BuildContext context) => new Dialog(
         backgroundColor: Colors.transparent,
         shape: RoundedRectangleBorder(

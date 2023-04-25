@@ -114,20 +114,22 @@ class DialogosAwesome {
 
   static getSucess(
       {String title = 'ÉXITO',
+         bool isDismissible=true,
       required String descripcion,
       Function()? btnOkOnPress}) {
 
-
+/*
     final AwesomeBottomSheet _awesomeBottomSheet = AwesomeBottomSheet();
 
     _awesomeBottomSheet.show(
+      isDismissible:isDismissible ,
       icon: Icons.playlist_add_check_circle,
       context: Get.context!,
       title: Text(title),
       description: Text(descripcion),
       color: CustomSheetColor(
-        mainColor: Colors.green.withOpacity(0.8),
-        accentColor: Colors.green.withOpacity(0.7),
+        mainColor: Colors.green.withOpacity(0.95),
+        accentColor: Colors.green.withOpacity(1),
         iconColor: Colors.white,
       ),
       positive: AwesomeSheetAction(
@@ -138,10 +140,10 @@ class DialogosAwesome {
             : btnOkOnPress,
         title: 'OK',
       ),
-    );
+    );*/
 
 
-    /*AwesomeDialog(
+    AwesomeDialog(
       dismissOnTouchOutside: false,
       dismissOnBackKeyPress: false,
       context: Get.context!,
@@ -157,7 +159,7 @@ class DialogosAwesome {
               Get.back();
             }
           : btnOkOnPress,
-    ).show();*/
+    ).show();
   }
 
   static getWarning(

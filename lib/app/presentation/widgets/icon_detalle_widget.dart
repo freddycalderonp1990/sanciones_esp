@@ -18,6 +18,8 @@ class IconDetalleWidget extends StatelessWidget {
           OnlyIconWidget(
             nameStringImg: nameStringImg,
           ),
+
+
           Flexible(
             child: DetalleTextWidget(
 

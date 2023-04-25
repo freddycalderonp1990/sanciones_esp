@@ -10,14 +10,11 @@ class PersonApiImpl extends PersonRepository {
 
 
   @override
-  Future<DataCadete> getDataCadete(String cedula) async {
-    try {
+  Future<CadeteModel> getDataCadete(String cedula) async {
 
 
       return   await _personProviderImpl.getDataCadete( cedula);
-    }  catch (e){
-      throw ExceptionHelper.captureError(e);
-    }
+
   }
 
 

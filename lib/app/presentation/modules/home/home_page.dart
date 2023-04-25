@@ -6,8 +6,8 @@ class HomePage extends GetView<HomeController> {
   @override
   Widget build(BuildContext context) {
     return WorkAreaPageAppWidget(
-        name: controller.loginController.user.value.userData.name,
-        imgPerfil: AppImages.imgBase64,
+        name: AppConfig.user.userData.name,
+       // imgPerfil: AppImages.imgBase64,
         btnAtras: false,
         pantallaIrAtras: () {
           print(
@@ -30,6 +30,15 @@ class HomePage extends GetView<HomeController> {
         Container(
           height: responsive.altoP(8),
         ),
+        BotonesWidget(
+            iconData: Icons.edit_square,
+            title: "CONSULTA",
+            onPressed: () {
+              Get.toNamed(AppRoutes.SANCIONES_CONSULT);
+            }),
+
+
+        SizedBox(height: 10,),
         BotonesWidget(
             iconData: Icons.edit_square,
             title: "SANCIONES",

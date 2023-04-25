@@ -84,3 +84,4 @@ part 'login/login_controller.dart';
 part 'login/inicio_rapido/inicio_rapido_controller.dart';
 part 'sanciones/sanciones_controller.dart';
 part 'qr_scanner/qr_scanner_controller.dart';
+part 'sanciones/consulta_sanciones/consulta_sanciones_controller.dart';

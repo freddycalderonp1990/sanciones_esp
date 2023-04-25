@@ -4,6 +4,6 @@ abstract class PersonRepository {
   //Se define que cosas quiero hacer
   //se definen los contartos
 
-  Future<DataCadete> getDataCadete(String cedula);
+  Future<CadeteModel> getDataCadete(String cedula);
 
 }

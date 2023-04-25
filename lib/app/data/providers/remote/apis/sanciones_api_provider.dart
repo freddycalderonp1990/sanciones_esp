@@ -5,16 +5,16 @@ class SancionesApiProviderImpl extends SancionesRepository {
 
 
   @override
-  Future<List<Sancion>> getSanciones(int parentId) async {
+  Future<List<SancionesModel>> getSanciones(int parentId) async {
 
     String json = await UrlApiProvider.get(
         segmento: 'catalogs?parentId=${parentId}');
 
-    return sancionesModelFromJson(json).sancion;
+    return sancionesModelFromJson(json);
   }
 
   @override
-  Future<bool> registreSanctions(SanctionsRequest sanctionsRequest) async {
+  Future<String> registreSanctions(SanctionsRequest sanctionsRequest) async {
     Object? body = {
       "code": sanctionsRequest.code,
       "missingDescription": sanctionsRequest.missingDescription,
@@ -27,22 +27,26 @@ class SancionesApiProviderImpl extends SancionesRepository {
       "score":sanctionsRequest.score,
       "statusSanction":sanctionsRequest.statusSanction
     };
-    String json = await UrlApiProvider.post(
+    String jsonString = await UrlApiProvider.post(
         body: body, segmento: 'sanctions');
 
+    Map<String, dynamic> jsonData=json.decode(jsonString);
 
-    CabeceraModel cabeceraRequest=  cabeceraModelFromJson(json);
-    print(cabeceraRequest.message);
-    print(cabeceraRequest.statusCode);
+    String code=ParseModel.parseToString(jsonData["code"]);
 
-    if(cabeceraRequest.statusCode==200 && cabeceraRequest.message=="Creado con éxito" ){
-      return true;
-    }
-    else{
-      return false;
-    }
+    return code;
 
 
+
+
+  }
+
+  @override
+  Future<List<ConsultSanctionModel>> getSancionesPorFecha({required String fechaDesde,required String fechaHasta,required int idInstructor}) async{
+    String json = await UrlApiProvider.get(
+        segmento: 'sanctions?dateSanction__gte=${fechaDesde}&dateSanction__lte=${fechaHasta}&&instructor__person=${idInstructor}');
+
+    return consultSanctionModelFromJson(json);
   }
 
 

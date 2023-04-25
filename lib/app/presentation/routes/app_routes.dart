@@ -7,6 +7,7 @@ class AppRoutes{
 
   static const PDFVIEW="/pdf_view";
   static const SANCIONES="/sanciones";
+  static const SANCIONES_CONSULT="/sanciones-consult";
 
 
 

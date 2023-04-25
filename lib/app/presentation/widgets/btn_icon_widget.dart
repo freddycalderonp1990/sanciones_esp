@@ -5,19 +5,38 @@ class BtnIconWidget extends StatelessWidget {
   final Color colorIcon;
   final Color colorBtn;
   final VoidCallback? onPressed;
+final String? titulo;
 
   const BtnIconWidget(
       {super.key,
        this.icon,
       this.colorIcon = AppColors.colorAzul,
       this.colorBtn = Colors.white38,
-      this.onPressed});
+      this.onPressed, this.titulo});
 
   @override
   Widget build(BuildContext context) {
     double radius = 10.0;
     final responsive = ResponsiveUtil();
     Widget wg = Container();
+
+    Widget btn=Icon(
+      icon,
+      color: colorIcon,
+      size: responsive.isVertical()
+          ? responsive.altoP(3)
+          : responsive.anchoP(3),
+    );
+
+    Widget wgDesing=btn;
+
+    if(titulo!=null) {
+      wgDesing = Row(children: [
+        Text(titulo!),
+        btn
+      ],);
+    }
+
 
     wg = CupertinoButton(
       minSize:
@@ -27,13 +46,7 @@ class BtnIconWidget extends StatelessWidget {
       color: colorBtn,
       onPressed: onPressed,
       //volver atras
-      child: Icon(
-        icon,
-        color: colorIcon,
-        size: responsive.isVertical()
-            ? responsive.altoP(3)
-            : responsive.anchoP(3),
-      ),
+      child: wgDesing,
     );
 
     return wg;

@@ -4,30 +4,28 @@
 import 'data/providers/remote/apis/mods/mods_impl.dart';
 import 'data/repository/data_repositories.dart';
 
-
 import 'data/providers/providers_impl.dart';
 import 'domain/repositories/domain_repositories.dart';
-
 import 'package:get/get.dart';
-
 
 class DependencyInjection extends Bindings{
 
   static ini(){
 
+
    // Get.lazyPut<LocalStoreImpl>(() =>LocalStoreImpl(LocalStoreProviderImpl()), fenix: true);
     Get.put<LocalStoreImpl>(LocalStoreImpl(LocalStoreProviderImpl()));
 
 
-  /*  Get.lazyPut<AuthApiImpl>(() =>AuthApiImpl(AuthApiProviderImpl()), fenix: true);
+    Get.lazyPut<AuthApiImpl>(() =>AuthApiImpl(AuthApiProviderImpl()), fenix: true);
     Get.lazyPut<PersonApiImpl>(() =>PersonApiImpl(PersonApiProviderImpl()), fenix: true);
-    Get.put<SancionesApiImpl>(SancionesApiImpl(SancionesApiProviderImpl()));*/
+    Get.put<SancionesApiImpl>(SancionesApiImpl(SancionesApiProviderImpl()));
 
-
+/*
     Get.lazyPut<AuthApiImpl>(() =>AuthApiImpl(AuthApiProviderModsImpl()), fenix: true);
     Get.lazyPut<PersonApiImpl>(() =>PersonApiImpl(PersonApiProviderModsImpl()), fenix: true);
     Get.put<SancionesApiImpl>(SancionesApiImpl(SancionesApiProviderModsImpl()));
-
+*/
 
     //Repositori
     Get.lazyPut<LocalStorageRepository> (() => LocalStoreImpl(LocalStoreProviderImpl()), fenix: true);

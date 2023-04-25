@@ -25,7 +25,8 @@ class BtnAtrasWidget extends StatelessWidget {
             borderRadius: BorderRadius.circular(30),
             color: Colors.black26,
             onPressed:pantallaIrAtras == null? () =>
-                    Get.back()
+
+            Navigator.of(Get.context!).pop()
                 :
                 pantallaIrAtras,
             //volver atras

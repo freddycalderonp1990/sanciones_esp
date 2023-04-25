@@ -11,6 +11,7 @@ import '../../../widgets/custom_app_widgets.dart';
 
 class WgTipoBusqueda extends StatelessWidget {
   final GestureTapCallback? onTap;
+  final GestureTapCallback? onTapQr;
   final String title;
   final String msjError;
   final GlobalKey<FormState> myKey;
@@ -20,7 +21,7 @@ class WgTipoBusqueda extends StatelessWidget {
   final double anchoPorcentaje;
   final TextEditingController controller;
 
-  const WgTipoBusqueda({ this.onTap,required this.title,required this.msjError,required this.myKey, this.maxLength=11, this.keyboardType=TextInputType.text, this.icono, this.anchoPorcentaje=100, required this.controller}) ;
+  const WgTipoBusqueda({ this.onTap,required this.title,required this.msjError,required this.myKey, this.maxLength=11, this.keyboardType=TextInputType.text, this.icono, this.anchoPorcentaje=100, required this.controller, this.onTapQr}) ;
 
   @override
   Widget build(BuildContext context) {
@@ -71,10 +72,14 @@ class WgTipoBusqueda extends StatelessWidget {
               ),
               BtnIconWidget(
 
-
-
                 onPressed: onTap,
                   icon:Icons.search
+              ),
+              SizedBox(width: 10,),
+
+              BtnIconWidget(
+                  onPressed: onTapQr,
+                  icon:Icons.qr_code
               ),
             ],
           ),

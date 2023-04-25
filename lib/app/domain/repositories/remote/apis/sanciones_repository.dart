@@ -5,11 +5,15 @@ part of '../../domain_repositories.dart';
 
 abstract class SancionesRepository {
   //Se define que cosas quiero hacer
-  //se definen los contartos
+  //se definen los contratos
 
-  Future<List<Sancion>> getSanciones(int parentId);
+  Future<List<SancionesModel>> getSanciones(int parentId);
 
-  Future<bool> registreSanctions(SanctionsRequest sanctionsRequest);
+  Future<List<ConsultSanctionModel>> getSancionesPorFecha({required String fechaDesde,required String fechaHasta,required int idInstructor });
+
+
+
+  Future<String> registreSanctions(SanctionsRequest sanctionsRequest);
 
 
 

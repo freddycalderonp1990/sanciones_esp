@@ -82,7 +82,7 @@ class _WorkAreaPageAppWidgetState extends State<WorkAreaPageAppWidget> {
               ),
               widget.btnAtras
                   ? BtnIconWidget(
-                      onPressed: () => Get.back(), icon: Icons.arrow_back)
+                      onPressed:widget.pantallaIrAtras==null?   () => Get.back():widget.pantallaIrAtras, icon: Icons.arrow_back)
                   : Container(),
               Expanded(
                 child: Text(
@@ -181,12 +181,12 @@ class _WorkAreaPageAppWidgetState extends State<WorkAreaPageAppWidget> {
                             desingCabecera,
                             Expanded(
                                 child: Container(
-                              child: widget.contenido != null
-                                  ? Container(
+                                  child: widget.contenido != null
+                                      ? Container(
                                       padding: EdgeInsets.all(5),
                                       child: widget.contenido)
-                                  : Container(),
-                            ))
+                                      : Container(),
+                                ))
                           ],
                         ),
                       )
@@ -194,11 +194,14 @@ class _WorkAreaPageAppWidgetState extends State<WorkAreaPageAppWidget> {
                   ),
                 ),
                 Obx(() => CargandoWidget(
-                      mostrar: widget.peticionServer.value,
-                    ))
+                  mostrar: widget.peticionServer.value,
+                ))
               ],
             )));
   }
+
+
+
 
   getDesingName(String name) {
     final responsive = ResponsiveUtil();

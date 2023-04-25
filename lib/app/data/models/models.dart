@@ -8,4 +8,5 @@ part 'cadete_model.dart';
 part 'cabecera_model.dart';
 
 part 'local/local_person_model.dart';
+part 'consult_sanction_model.dart';
 

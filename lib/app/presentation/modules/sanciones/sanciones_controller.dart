@@ -9,15 +9,19 @@ class SancionesController extends GetxController {
 
   BuildContext ctxDialogoQr = Get.context!;
 
+
+
+
   RxString cedulaQr = ''.obs;
   RxString fechaActual = ''.obs;
+  RxString fechaActualReal = ''.obs;
 
   var peticionServerState = false.obs;
   var selectCedula = true.obs;
   var selectNombres = false.obs;
   var showDatos = false.obs;
 
-  Rx<DataCadete> dataCedete = DataCadete.empty().obs;
+  Rx<CadeteModel> dataCedete = CadeteModel.empty().obs;
 
   var controllerCedula = TextEditingController();
   var controllerNombres = TextEditingController();
@@ -27,26 +31,29 @@ class SancionesController extends GetxController {
   final keyCedula = GlobalKey<FormState>();
   final keyObservacion = GlobalKey<FormState>();
 
-  RxList<ModelDataCombo> dataCombo = <ModelDataCombo>[].obs;
+  RxList<ModelDataCombo> dataComboListSanciones = <ModelDataCombo>[].obs;
   Rx<ModelDataCombo> dataSelectSanciones =
       ModelDataCombo(id: 0, titulo: "").obs;
 
-  final loginController = Get.find<LoginController>();
+
+
+
   final SancionesApiImpl _sancionesApiImpl = Get.find<SancionesApiImpl>();
   final PersonApiImpl _personApiImpl = Get.find<PersonApiImpl>();
 
-  AuthModel user = AuthModel.empty();
+
 
   int idSubTipoOperativo = 0;
 
   final GlobalKey gLobalkey = GlobalKey();
 
-  final LocalStorageRepository _localStorageRepository =
-      Get.find<LocalStorageRepository>();
+
 
   @override
   void onInit() {
-    user = loginController.user.value;
+
+
+    fechaActualReal.value = DateFormat(AppConfig.formatoFecha).format(dateFechaNow);
 
 
     setFecha(dateFechaNow);
@@ -56,9 +63,12 @@ class SancionesController extends GetxController {
     super.onInit();
   }
 
-  setFecha(dateFecha){
+  setFecha(dateFecha) {
     dateFechaNow = dateFecha;
-    fechaActual.value =   DateFormat(AppConfig.formatoFecha).format(dateFecha);
+    fechaActual.value = DateFormat(AppConfig.formatoFecha).format(dateFecha);
+
+
+
   }
 
   @override
@@ -68,23 +78,34 @@ class SancionesController extends GetxController {
 
   getSancionesLeves() async {
     try {
+      if(AppConfig.dataComboListSanciones.length>0){
+        dataComboListSanciones=AppConfig.dataComboListSanciones;
+        print("cargo de la lita");
+        return;
+      }
+
+
       peticionServerState(true);
 
-      final List<Sancion> sanciones =
+      final List<SancionesModel> sanciones =
           await _sancionesApiImpl.getSancionesLeves();
 
       print("sanciones.length ${sanciones.length}");
 
-      if (sanciones.length > 0) {
-        dataCombo.clear();
+
+      if (sanciones.length > 0 ) {
+        print("cargo del server");
+        dataComboListSanciones.clear();
 
         for (int i = 0; i < sanciones.length; i++) {
-          Sancion x = sanciones[i];
+          SancionesModel x = sanciones[i];
 
-          dataCombo.add(
+          dataComboListSanciones.add(
             ModelDataCombo(id: x.id, titulo: "${x.name}. ${x.description}"),
           );
         }
+
+        AppConfig.dataComboListSanciones=dataComboListSanciones;
       }
       peticionServerState(false);
     } on ServerException catch (e) {
@@ -115,9 +136,19 @@ class SancionesController extends GetxController {
 
           if (resul) {
             controllerCedula.text = cedula;
+
+            print("cerrando dialogo = ${result}");
+            //Navigator.of(Get.context!).pop(AppConfig.dialogoQr);
             // Navigator.pop(ctxDialogoQr);
 
-            Navigator.of(Get.context!).pop();
+
+             //Navigator.of(AppConfig.ctxDialogoQr!).pop();
+            if(AppConfig.dialogoShow) {
+              Get.back();
+              AppConfig.dialogoShow=false;
+            }
+
+
           } else {
             //  DialogosAwesome.getError(descripcion: "Qr, No Valido");
           }
@@ -153,7 +184,7 @@ class SancionesController extends GetxController {
       peticionServerState(true);
       FocusScope.of(Get.context!).requestFocus(new FocusNode());
 
-      DataCadete dataCadete = await _personApiImpl.getDataCadete(cedula);
+      CadeteModel dataCadete = await _personApiImpl.getDataCadete(cedula);
       if (dataCadete == null) {
         DialogosAwesome.getInformationAceptar(
             descripcion: "No se encontro datos con la cédula ingresada");
@@ -187,28 +218,34 @@ class SancionesController extends GetxController {
       peticionServerState(true);
       FocusScope.of(Get.context!).requestFocus(new FocusNode());
 
-      int estadoSancion = 33;
+      int estadoSancion = 33; //ejecutado
+      estadoSancion=66; //registrado
+
 
       SanctionsRequest sanctionsRequest = SanctionsRequest(
           code: 1,
           missingDescription: controllerObservacion.text,
-          instructor: loginController.user.value.userData.person_id,
-          cadet: dataCedete.value.person.id,
+          instructor: AppConfig.user.userData.person_id,
+          cadet: dataCedete.value.dataCadete.id,
           sectionPromotion: 1,
           score: 20,
           legalRegulation: dataSelectSanciones.value.id,
-          dateSanction: "2023-02-01",
-          dateRegistration: "2023-02-01",
+          dateSanction: fechaActual.value,
+          dateRegistration: fechaActualReal.value,
           statusSanction: estadoSancion);
 
-      bool result = await _sancionesApiImpl.registreSanctions(sanctionsRequest);
-      if (!result) {
+      String code = await _sancionesApiImpl.registreSanctions(sanctionsRequest);
+      if (code.length>0) {
+
+        DialogosAwesome.getSucess(
+            descripcion: "Sanción registrada con éxito.\n\n Número de Sanción ${code}",
+            isDismissible: false,
+            btnOkOnPress: (){
+              Get.offAllNamed(AppRoutes.SANCIONES);
+            }
+        );
+      } else {
         DialogosAwesome.getWarning(descripcion: "No se completó el registro");
-      }
-      else{
-        DialogosAwesome.getSucess(descripcion: "Sanción registrada con éxito");
-
-
       }
 
       peticionServerState(false);

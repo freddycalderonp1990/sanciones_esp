@@ -11,7 +11,7 @@ class TituloDetalleTextWidget extends StatelessWidget {
   final EdgeInsetsGeometry? padding;
 
 
-  TituloDetalleTextWidget({required this.title, required this.detalle, this.color=Colors.white, this.margin, this.padding});
+  TituloDetalleTextWidget({required this.title, required this.detalle, this.color=Colors.transparent, this.margin, this.padding});
   @override
   Widget build(BuildContext context) {
 

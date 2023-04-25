@@ -34,12 +34,10 @@ class AppImages{
   static const iconClaveDigital = _rutaIcon + "ic_clave_digital.png";
 
 
-
-
-
   static const iconWts = _rutaIcon + "ic_wts.png";
   static const iconGmail = _rutaIcon + "ic_gmail.png";
   static const iconWeb = _rutaIcon + "ic_web.png";
+  static const iconFecha = _rutaIcon + "ic_fecha.png";
 
   static const iconCompartir = _rutaIcon + "ic_compartir.png";
 

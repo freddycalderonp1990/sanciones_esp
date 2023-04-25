@@ -6,6 +6,9 @@ class SancionesPage extends GetView<SancionesController> {
   @override
   Widget build(BuildContext context) {
     return WorkAreaPageAppWidget(
+      pantallaIrAtras: (){
+        Get.offAllNamed(AppRoutes.HOME);
+      },
         btnAtras: true,
         peticionServer: controller.peticionServerState,
         contenido: Column(
@@ -19,30 +22,9 @@ class SancionesPage extends GetView<SancionesController> {
     Widget wg = SingleChildScrollView(
       child: Column(
         children: [
-          /* BtnIconWidget(
-              titulo: "Qr",
-              onPressed: () {
-                DialogosDesingWidget.getDialogoX(
-                    title: "Qr",
-                    contenido: Container(
-                      height: 400,
-                      width: 400,
-                      child: QRView(
-                        key: controller.qrKey,
-                        onQRViewCreated: controller.onQRViewCreated,
-                        overlay: QrScannerOverlayShape(
-                            borderColor: Colors.red,
-                            borderRadius: 10,
-                            borderLength: 30,
-                            borderWidth: 10,
-                            cutOutSize: responsive.diagonalP(25)),
-                        onPermissionSet: (ctrl, p) =>
-                            controller.onPermissionSet(Get.context!, ctrl, p),
-                      ),
-                    ));
-              }),
 
-              */
+
+
           Obx(
             () => Text(controller.cedulaQr.value),
           ),
@@ -101,7 +83,7 @@ class SancionesPage extends GetView<SancionesController> {
                         fontSize:
                             responsive.diagonalP(AppConfig.tamTexto + 0.5),
                         color: AppColors.colorAzulSecond),
-                    labelText: "Observación",
+                    labelText: "Descripción de la Sanción",
                     hintText: "Escriba....",
                     alignLabelWithHint: false,
                     filled: true),
@@ -157,6 +139,8 @@ class SancionesPage extends GetView<SancionesController> {
   getWgImputTipoBusqueda() {
     Widget wg = Container();
 
+    final responsive=ResponsiveUtil();
+/*
     //Nombres
     wg = WgTipoBusqueda(
         controller: controller.controllerNombres,
@@ -171,7 +155,7 @@ class SancionesPage extends GetView<SancionesController> {
         maxLength: 200,
         keyboardType: TextInputType.text,
         onTap: () {});
-
+*/
     //Cédula
     if (controller.selectCedula.value) {
       wg = WgTipoBusqueda(
@@ -186,6 +170,31 @@ class SancionesPage extends GetView<SancionesController> {
         keyboardType: TextInputType.number,
         title: "Cédula",
         msjError: "Ingrese una cédula valida",
+          onTapQr: () async{
+
+         AppConfig.dialogoShow=true;
+
+           DialogosDesingWidget.getDialogoX(
+                title: "Escanear QR ${controller.controllerCedula.text}",
+                contenido: Container(
+                  height: 400,
+                  width: 400,
+                  child: QRView(
+                    key: controller.qrKey,
+                    onQRViewCreated: controller.onQRViewCreated,
+                    overlay: QrScannerOverlayShape(
+                        borderColor: Colors.red,
+                        borderRadius: 10,
+                        borderLength: 30,
+                        borderWidth: 10,
+                        cutOutSize: responsive.diagonalP(25)),
+                    onPermissionSet: (ctrl, p) =>
+                        controller.onPermissionSet(Get.context!, ctrl, p),
+                  ),
+                ));
+          },
+
+
         onTap: () {
           controller.getDataCadetePorCedula(
               cedula: controller.controllerCedula.text);
@@ -217,7 +226,7 @@ class SancionesPage extends GetView<SancionesController> {
           onPressed: () {
             DialogosDesingWidget.getDialogoX(
                 contenido: onlyWdFoto,
-                title: controller.dataCedete.value.person.namesComplete);
+                title: controller.dataCedete.value.dataCadete.namesComplete);
           },
           child: Container(
             height: responsive.altoP(15),
@@ -243,7 +252,7 @@ class SancionesPage extends GetView<SancionesController> {
                 ),
                 IconTitleDetalleWidget(
                     icon: Icons.assignment_ind,
-                    detalle: controller.dataCedete.value.person.namesComplete,
+                    detalle: controller.dataCedete.value.dataCadete.namesComplete,
                     title: "NOMBRES:"),
                 SizedBox(
                   height: separacionText,
@@ -263,7 +272,9 @@ class SancionesPage extends GetView<SancionesController> {
                           detalle: controller.fechaActual.value,
                           title: "FECHA SANCIÓN:"),
                     ),
-                    BtnIconWidget(
+
+
+                   /* BtnIconWidget(
                       onPressed: () {
 
                         print("holaa");
@@ -274,7 +285,7 @@ class SancionesPage extends GetView<SancionesController> {
                         });
                       },
                       icon: Icons.date_range_outlined,
-                    )
+                    )*/
                   ],
                 )
               ],
@@ -291,7 +302,7 @@ class SancionesPage extends GetView<SancionesController> {
           title: "Sanciónes Leves Art. 39",
           titleSelecioneEl: "Seleccione el literal",
           selectValue: controller.dataSelectSanciones,
-          data: controller.dataCombo.value,
+          data: controller.dataComboListSanciones.value,
           complete: (data) {
             controller.dataSelectSanciones.value = data;
             print("daaaa");

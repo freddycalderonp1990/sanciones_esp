@@ -2,7 +2,7 @@ part of '../../../providers_impl.dart';
 
 class UrlApiProvider {
   static int _secondsTimeout =
-      AppConfig.AmbienteUrl == Ambiente.produccion ? 8 : 30;
+      AppConfig.AmbienteUrl == Ambiente.produccion ? 12 : 30;
 
   static Future<Map<String, String>> getheaders() async {
     LocalStorageRepository _localStorageRepository =
@@ -48,10 +48,7 @@ class UrlApiProvider {
       print("post-statusCode: ${response.statusCode}");
       print("post-responsebody: ${response.body}");
 
-      if (response.statusCode == 200) {
-        if (!isLogin) {
-          log(response.body);
-        }
+      if (response.statusCode == 200 || response.statusCode == 201) {
         return UtilidadesUtil.convertUTF8(response.body.codeUnits);
       } else if (response.statusCode == 401 && isLogin) {
         throw ServerException(cause: "El Usuario o clave es incorrecta");

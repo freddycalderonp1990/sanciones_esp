@@ -47,6 +47,10 @@ class AppPages {
         page: () => SancionesPage(),
         binding: SancionesBinding()),
 
+    getPageConfig(
+        name: AppRoutes.SANCIONES_CONSULT,
+        page: () => ConsultaSancionesPage(),
+        binding: ConsultaSancionesBinding()),
 
     getPageConfig(
         name: AppRoutes.PDFVIEW,
